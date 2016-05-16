@@ -1,3 +1,4 @@
+
 //Justin Clark, Bincheng Li, Joshua Cho, Alexander Orozco
 
 #include <stdio.h>
@@ -115,7 +116,7 @@ void mainloopFunction(struct cpu *self) {
 		printf("IO2queue size = %i\n", waitingQueueIO1->size);
 		printf("terminateQueue size = %i\n", terminateQueue->size);
 
-
+		
 		if (currProcess != NULL) {
 			self->pcRegister = PCB_get_pc(currProcess);
 			printf("\ncurrProcess pid = %lu pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
@@ -139,7 +140,11 @@ void mainloopFunction(struct cpu *self) {
 				
 			}
 			
-		} else {
+		} else if (readyQueue->size > 0) {
+			currProcess = dispatcher(currProcess, readyQueue);
+		}
+		
+		else {
 			printf("\n Idling\n");
 		}
 
@@ -476,4 +481,3 @@ void *io_trap2(void *args) {
 	return NULL;
 		// call ISR with io interrupt
 }
-
