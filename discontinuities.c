@@ -264,9 +264,9 @@ PCB_p ISR(enum interrupt_type i, PCB_p currProcess, Queue_q readyQueue) {
 	return scheduler(i, currProcess, readyQueue);
 }
 
-PCB_p scheduler(enum interrupt_type i, PCB_p currProcess, Queue_q readyQueue) {
+PCB_p scheduler(enum interrupt_type inter_type, PCB_p currProcess, Queue_q readyQueue) {
 	
-	switch (i) {
+	switch (inter_type) {
 		case timer: 
 			PCB_set_state(currProcess, ready);
 			
