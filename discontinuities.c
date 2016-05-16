@@ -34,8 +34,11 @@ void mainloopFunction(struct cpu *self) {
 	unsigned long pid = 1;
 	int IO_1TrapFound = 0;
 	int IO_2TrapFound = 0;
+	int executions = 0;
+	int i;
 
-	
+
+
 	pthread_mutex_init(&timer1_mutex, NULL);
 	pthread_mutex_init(&timer2_mutex, NULL);
 	pthread_mutex_init(&io1_mutex, NULL);
@@ -87,17 +90,16 @@ void mainloopFunction(struct cpu *self) {
 	PCB_p currProcess = PCB_construct();
 	PCB_init(currProcess);
 	PCB_set_pid(currProcess, pid);
-	int i;
 	for(i = 0; i < DEFAULT_NUM_PCBS; i++) {
-			PCB_p p = PCB_construct();
-			PCB_init(p);
-			pid++;
-			PCB_set_pid(p, pid);
-			newProcessQueue = enqueue(newProcessQueue, p);
+		PCB_p p = PCB_construct();
+		PCB_init(p);
+		pid++;
+		PCB_set_pid(p, pid);
+		newProcessQueue = enqueue(newProcessQueue, p);
 	}
 	
-		NewToReady(newProcessQueue, readyQueue);
-		int executions = 0;
+	NewToReady(newProcessQueue, readyQueue);
+	
 	while (executions < DEFAULT_NUM_EXECUTIONS) {
 		executions++;
 		
