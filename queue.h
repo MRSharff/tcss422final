@@ -1,10 +1,9 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
-#include "PCB.h"
+#include "pcb.h"
 
 #define DEFAULT_SIZE 0
 #define DEFAULT_COUNTER 0
-
 
 
 typedef struct node {
@@ -26,4 +25,5 @@ PCB * dequeue(Queue *head);
 PCB * peek(Queue *head);
 int isEmpty(Queue *head);
 void toString(Queue *head);
+
 #endif

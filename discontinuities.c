@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <pthread.h>
-#include "Discontinuities.h"
+
+#include "discontinuities.h"
 
 static unsigned int SysStack = 0;
 static int CallsToDispathcer = 0;
@@ -326,6 +327,11 @@ void *Timer(void *args) {
 
 	time = (struct timespec*) calloc(1, sizeof(time));
 
+	// if (time == NULL) {
+	// 	// print_error(NULL_POINTER);
+	// 	printf("Time was null");
+	// }
+
 	time->tv_nsec = 0.1;
 	
 	while(1) {
@@ -343,6 +349,7 @@ void *Timer(void *args) {
 		pthread_mutex_unlock(&timer2_mutex);
 		pthread_mutex_lock(&timer1_mutex);
 	}
+	free(time);
 	return NULL;
 	
 }

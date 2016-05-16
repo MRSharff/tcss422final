@@ -1,3 +1,8 @@
+#ifndef PCB_H_
+#define PCB_H_
+
+#include "errors.h"
+
 /*
 	PCB helper class containing definitions, struct, and prototypes.
 	
@@ -59,7 +64,8 @@ const char* getStateName(PCB_p);	//returns char* pointing to string of state
 void PCB_toString (PCB_p);
 //void PCB_toString (PCB_p, char*);  // returns a string representing the contents of the pcb
 
-void print_error(int err);	//prints error information
+// void print_error(int err);	//prints error information
 
 int PC_Increment(PCB_p); //Function to add 1 to the PCB and handel the maxPC interaction returns 0 if not terminated, 1 if terminated
 
+#endif

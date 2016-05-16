@@ -1,9 +1,10 @@
+#ifndef ROUND_ROBIN_SCHEDULER_H_
+#define ROUND_ROBIN_SCHEDULER_H_
 
 #include "queue.h"
 
-#define DEFAULT_NUM_PCBS 10
+#define DEFAULT_NUM_PCBS 20
 #define QUANTUM 1
-#define DEFAULT_NUM_EXECUTIONS 2000
 
 enum interrupt_type {timer, IO, interrupt};	
 
@@ -25,3 +26,5 @@ PCB_p RoundRobinPrint(PCB_p, Queue_q);
 void* Timer();
 void* io_trap1();
 void* io_trap2();
+
+#endif

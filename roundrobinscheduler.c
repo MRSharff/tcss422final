@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include<pthread.h>
-#include "RoundRobinScheduler.h"
+#include <pthread.h>
+#include "roundrobinscheduler.h"
 
 static unsigned int SysStack = 0;
 static int CallsToDispathcer = 0;

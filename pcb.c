@@ -10,8 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "PCB.h"
-#include "Errors.h"
+#include "pcb.h"
 
 
 PCB_p PCB_construct (void) {// returns a pcb pointer to heap allocation
