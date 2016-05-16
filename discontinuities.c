@@ -16,8 +16,9 @@ pthread_mutex_t timer1_mutex, timer2_mutex, io1_mutex, io2_mutex, trap1_mutex, t
 pthread_t pthr_timer, pthr_iotrap1, pthr_iotrap2;
 
 int randomNumber (int min, int max) {
+	int r;
 	srand(time(NULL));
-	int r = (random() % max - min) + min;
+	r = (random() % max - min) + min;
 	return r;
 }
 
