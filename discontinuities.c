@@ -100,10 +100,17 @@ void mainloopFunction(struct cpu *self) {
 	
 	NewToReady(newProcessQueue, readyQueue);
 	
-	while (executions < DEFAULT_NUM_EXECUTIONS) {
+	// while (executions < DEFAULT_NUM_EXECUTIONS) {
+	while (terminateQueue->size < DEFAULT_NUM_PCBS + 1) {
 		executions++;
 		
-		printf("\nreadyQueue size = %i\nIO1queue size = %i\nIO2queue size = %i\nterminateQueue size = %i\n", readyQueue->size, waitingQueueIO1->size, waitingQueueIO2->size, terminateQueue->size);
+		// printf("\nreadyQueue size = %i\nIO1queue size = %i\nIO2queue size = %i\nterminateQueue size = %i\n", readyQueue->size, waitingQueueIO1->size, waitingQueueIO2->size, terminateQueue->size);
+		printf("\nreadyQueue size = %i\n", readyQueue->size);
+		printf("IO1queue size = %i\n", waitingQueueIO1->size);
+		printf("IO2queue size = %i\n", waitingQueueIO1->size);
+		printf("terminateQueue size = %i\n", terminateQueue->size);
+
+
 		self->pcRegister = PCB_get_pc(currProcess);
 		printf("\ncurrProcess pid = %lu pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
 		SysStack = self->pcRegister;
@@ -116,7 +123,7 @@ void mainloopFunction(struct cpu *self) {
 			
 			if (readyQueue->size > 0) {
 				currProcess = dequeue(readyQueue);
-			} else currProcess = NULL;	
+			} else currProcess = NULL;
 			self->pcRegister = PCB_get_pc(currProcess);
 			SysStack = self->pcRegister;
 		}
@@ -354,7 +361,7 @@ void *Timer(void *args) {
 		pthread_mutex_unlock(&timer2_mutex);
 		pthread_mutex_lock(&timer1_mutex);
 	}
-	free(time);
+	// free(time);
 	return NULL;
 	
 }
