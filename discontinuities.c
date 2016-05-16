@@ -31,6 +31,11 @@ int main (void) {
 }
 
 void mainloopFunction(struct cpu *self) {
+	unsigned long pid = 1;
+	int IO_1TrapFound = 0;
+	int IO_2TrapFound = 0;
+
+	
 	pthread_mutex_init(&timer1_mutex, NULL);
 	pthread_mutex_init(&timer2_mutex, NULL);
 	pthread_mutex_init(&io1_mutex, NULL);
@@ -45,9 +50,6 @@ void mainloopFunction(struct cpu *self) {
 	pthread_mutex_lock(&trap1_mutex);
 	pthread_mutex_lock(&trap2_mutex);
 	
-	unsigned long pid = 1;
-	int IO_1TrapFound = 0;
-	int IO_2TrapFound = 0;
 	
 	
 	
