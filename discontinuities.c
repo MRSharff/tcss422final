@@ -10,6 +10,8 @@
 static unsigned int SysStack = 0;
 static int CallsToDispathcer = 0;
 
+PCB_p idle_pcb;
+
 
 pthread_mutex_t timer1_mutex, timer2_mutex, io1_mutex, io2_mutex, trap1_mutex, trap2_mutex, mutex3_mutex, mutex4_mutex;
 
@@ -31,12 +33,15 @@ int main (void) {
 }
 
 void mainloopFunction(struct cpu *self) {
+	idle_pcb = PCB_construct();
+	PCB_init(idle_pcb);
+	PCB_set_pid(idle_pcb, 0xFFFFFF);
+
 	unsigned long pid = 1;
 	int IO_1TrapFound = 0;
 	int IO_2TrapFound = 0;
 	int executions = 0;
 	int i;
-
 
 
 	pthread_mutex_init(&timer1_mutex, NULL);
@@ -111,28 +116,38 @@ void mainloopFunction(struct cpu *self) {
 		printf("terminateQueue size = %i\n", terminateQueue->size);
 
 
-		self->pcRegister = PCB_get_pc(currProcess);
-		printf("\ncurrProcess pid = %lu pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
-		SysStack = self->pcRegister;
-		
-		if (PC_Increment(currProcess) == 1) { //If incrementing the PC causes termcount = terminate then puts PCB in terminate queue and dequeues new currProcess.
-			PCB_set_state(currProcess, terminated);
-			printf("\nProcess pid = %lu terminated. \n", PCB_get_pid(currProcess));
-			currProcess->termination = time(NULL);
-			terminateQueue = enqueue(terminateQueue, currProcess);
-			
-			if (readyQueue->size > 0) {
-				currProcess = dequeue(readyQueue);
-			} else currProcess = NULL;
+		if (currProcess != NULL) {
 			self->pcRegister = PCB_get_pc(currProcess);
+			printf("\ncurrProcess pid = %lu pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
 			SysStack = self->pcRegister;
+			
+			if (PC_Increment(currProcess) == 1) { //If incrementing the PC causes termcount = terminate then puts PCB in terminate queue and dequeues new currProcess.
+				PCB_set_state(currProcess, terminated);
+				printf("\nProcess pid = %lu terminated. \n", PCB_get_pid(currProcess));
+				currProcess->termination = time(NULL);
+				terminateQueue = enqueue(terminateQueue, currProcess);
+				
+				if (readyQueue->size > 0) {
+					currProcess = dequeue(readyQueue);
+					self->pcRegister = PCB_get_pc(currProcess);
+					SysStack = self->pcRegister;
+					printf("\ncurrProcess pid = %lu new pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
+				} else  {
+					currProcess = NULL;
+					printf("\n Idling\n");
+				}
+				
+			}
+			
+		} else {
+			printf("\n Idling\n");
 		}
-		printf("\ncurrProcess pid = %lu new pc = %lu\n", PCB_get_pid(currProcess), PCB_get_pc(currProcess));
+
 		
 		
 //	The following if statements check for signals in all 3 threads while timer has priority. If timer mutex is unlocked goes to ISR, if IO unlocked goes to IOTrapHandler.
 	
-		if (pthread_mutex_trylock(&timer1_mutex) == 0)  { // If timer mutex is open
+		if (currProcess != NULL && pthread_mutex_trylock(&timer1_mutex) == 0)  { // If timer mutex is open
 			printf("\ntimer interrupt=======================================================================================\n");
 			currProcess = ISR(timer, currProcess, readyQueue);
 			pthread_mutex_unlock(&timer1_mutex);
@@ -191,27 +206,37 @@ void mainloopFunction(struct cpu *self) {
 	
 }
 
-int CheckIOTrap1(PCB_p currProcess) { //goes through IO trap array in currProcess and checks if equal to PC
-	int i = 0, trap;
-	int pc = PCB_get_pc(currProcess);
-	if (currProcess->IO_1Trap[i]  == pc) {
-		return 1;
-	}
-	while (currProcess->IO_1Trap[i] != pc && i < 10) {
-		trap = currProcess->IO_1Trap[i];
-		i++;
-		trap = currProcess->IO_1Trap[i];
-		if (trap < 0) {
-			return 0;
-		}
-		else if (currProcess->IO_1Trap[i]  == pc) {
-			printf("\nMATCH pc = %lu IO_1Trap = %i=======================================================================================", currProcess->pc, currProcess->IO_1Trap[i]);
+int CheckIOTrap1(PCB_p currProcess) { //goes through IO trap array in currProcess and checks if equal to 
+	if (currProcess == NULL) {
+		printf("CheckIOTrap1 currProcess is NULL");
+	} else {
+		int i = 0, trap;
+		int pc = PCB_get_pc(currProcess);
+		if (currProcess->IO_1Trap[i]  == pc) {
 			return 1;
-		} 
+		}
+		while (currProcess->IO_1Trap[i] != pc && i < 10) {
+			trap = currProcess->IO_1Trap[i];
+			i++;
+			trap = currProcess->IO_1Trap[i];
+			if (trap < 0) {
+				return 0;
+			}
+			else if (currProcess->IO_1Trap[i]  == pc) {
+				printf("\nMATCH pc = %lu IO_1Trap = %i=======================================================================================", currProcess->pc, currProcess->IO_1Trap[i]);
+				return 1;
+			} 
+		}
 	}
 	return 0;
 }
+
 int CheckIOTrap2(PCB_p currProcess) { //goes through IO trap array in currProcess and checks if equal to PC
+	if (currProcess == NULL) {
+		printf("CheckIOTrap2 currProcess is NULL");
+	}
+
+
 	int i = 0, trap;
 	int pc = PCB_get_pc(currProcess);
 	if (currProcess->IO_2Trap[i]  == pc) {
@@ -234,6 +259,12 @@ int CheckIOTrap2(PCB_p currProcess) { //goes through IO trap array in currProces
 
 
 PCB_p IOTrapHandler(int IONumber, Queue_q waitingQ, Queue_q readyQueue, PCB_p currProcess) {
+	if (currProcess == NULL) {
+		printf("IOTrapHandler currProcess is NULL");
+	}
+
+
+
 	switch(IONumber) {
 		case 1:
 		PCB_set_state(currProcess, halted);
@@ -272,29 +303,36 @@ PCB_p ISR(enum interrupt_type i, PCB_p currProcess, Queue_q readyQueue) {
 }
 
 PCB_p scheduler(enum interrupt_type inter_type, PCB_p currProcess, Queue_q readyQueue) {
+	if (currProcess != NULL) {
 	
-	switch (inter_type) {
-		case timer: 
-			PCB_set_state(currProcess, ready);
+		switch (inter_type) {
+			case timer: 
+				PCB_set_state(currProcess, ready);
+				
+				printf("Returned to Ready Queue: ");
+				PCB_toString(currProcess);
+				
+				enqueue(readyQueue, currProcess);
+				
+				return dispatcher(currProcess, readyQueue);
 			
-			printf("Returned to Ready Queue: ");
-			PCB_toString(currProcess);
-			
-			enqueue(readyQueue, currProcess);
-			
-			return dispatcher(currProcess, readyQueue);
-		
-		case IO:
-			return dispatcher(currProcess, readyQueue);
-			break;
-			
-		case interrupt:
-			break;
+			case IO:
+				return dispatcher(currProcess, readyQueue);
+				break;
+				
+			case interrupt:
+				break;
+		}
 	}
 	return NULL;
 }
 
 PCB_p dispatcher(PCB_p currProcess, Queue_q readyQueue) {
+	if (currProcess == NULL) {
+		printf("dispatcher currProcess is NULL");
+	}
+
+
 	CallsToDispathcer++;
 	
 	if (CallsToDispathcer % 4 == 0) {
@@ -316,19 +354,24 @@ PCB_p dispatcher(PCB_p currProcess, Queue_q readyQueue) {
 }
 
 PCB_p RoundRobinPrint(PCB_p currProcess, Queue_q readyQueue) {
-		printf("\n\nDispathcher information:\n\nCurrent Progress: ");
-		PCB_toString(currProcess);
-		printf("Switching to: ");
-		PCB_toString(peek(readyQueue));
-		printf("\n");
-		toString(readyQueue);
-		PCB_p newCurrentProcess = dequeue(readyQueue);
-		PCB_set_state(newCurrentProcess, running);
-		SysStack = PCB_get_pc(newCurrentProcess);
-		printf("\nNow Running: ");
-		PCB_toString(newCurrentProcess);
-		printf("\n\n");
-		return newCurrentProcess;
+
+	if (currProcess == NULL) {
+		printf("RoundRobinPrint currProcess is NULL");
+	}
+
+	printf("\n\nDispatcher information:\n\nCurrent Progress: ");
+	PCB_toString(currProcess);
+	printf("Switching to: ");
+	PCB_toString(peek(readyQueue));
+	printf("\n");
+	toString(readyQueue);
+	PCB_p newCurrentProcess = dequeue(readyQueue);
+	PCB_set_state(newCurrentProcess, running);
+	SysStack = PCB_get_pc(newCurrentProcess);
+	printf("\nNow Running: ");
+	PCB_toString(newCurrentProcess);
+	printf("\n\n");
+	return newCurrentProcess;
 }
 
 void *Timer(void *args) {
