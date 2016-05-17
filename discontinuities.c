@@ -108,12 +108,20 @@ void mainloopFunction(struct cpu *self) {
 	
 	// while (executions < DEFAULT_NUM_EXECUTIONS) {
 	while (terminateQueue->size < DEFAULT_NUM_PCBS + 1) {
+		if (executions % 20 == 0) {
+			printf("\nwhile loop at execution: %d\n", executions);
+		}
+
 		executions++;
 		
 		// printf("\nreadyQueue size = %i\nIO1queue size = %i\nIO2queue size = %i\nterminateQueue size = %i\n", readyQueue->size, waitingQueueIO1->size, waitingQueueIO2->size, terminateQueue->size);
 		printf("\nreadyQueue size = %i\n", readyQueue->size);
 		printf("IO1queue size = %i\n", waitingQueueIO1->size);
+		printf("waitingQueueIO1 is: ");
+		toString(waitingQueueIO1);
 		printf("IO2queue size = %i\n", waitingQueueIO1->size);
+		printf("waitingQueueIO2 is : ");
+		toString(waitingQueueIO2);
 		printf("terminateQueue size = %i\n", terminateQueue->size);
 
 		
@@ -157,8 +165,7 @@ void mainloopFunction(struct cpu *self) {
 			currProcess = ISR(timer, currProcess, readyQueue);
 			pthread_mutex_unlock(&timer1_mutex);
 			pthread_mutex_unlock(&timer2_mutex);
-		}
-		else if(pthread_mutex_trylock(&io1_mutex) == 0) {
+		} else if(pthread_mutex_trylock(&io1_mutex) == 0) {
 			if(waitingQueueIO1->size > 0) {
 				printf("\nIO1 interrupt=======================================================================================\n");
 				readyQueue = enqueue(readyQueue, dequeue(waitingQueueIO1));
@@ -166,9 +173,7 @@ void mainloopFunction(struct cpu *self) {
 				pthread_mutex_lock(&trap1_mutex);
 				pthread_mutex_unlock(&io1_mutex);
 			}
-		}
-		
-		else if (pthread_mutex_trylock(&io2_mutex) == 0) {
+		} else if (pthread_mutex_trylock(&io2_mutex) == 0) {
 			if(waitingQueueIO2->size > 0) {
 				printf("\nIO2 interrupt=======================================================================================\n");
 				readyQueue = enqueue(readyQueue, dequeue(waitingQueueIO2)) ;
@@ -179,7 +184,7 @@ void mainloopFunction(struct cpu *self) {
 		}
 		
 		
-		else if (IO_1TrapFound == 0) {
+		if (IO_1TrapFound == 0) {
 			if (CheckIOTrap1(currProcess) == 1) {
 			IO_1TrapFound = 1;
 			currProcess = IOTrapHandler(1, waitingQueueIO1, readyQueue, currProcess);
@@ -188,7 +193,7 @@ void mainloopFunction(struct cpu *self) {
 			pthread_mutex_unlock(&trap1_mutex);
 			}
 		}
-		else if (IO_2TrapFound == 0) {
+		if (IO_2TrapFound == 0) {
 			if (CheckIOTrap2(currProcess) == 1) {
 			IO_2TrapFound = 1;
 			currProcess = IOTrapHandler(2, waitingQueueIO2, readyQueue, currProcess);
@@ -197,13 +202,14 @@ void mainloopFunction(struct cpu *self) {
 			pthread_mutex_unlock(&trap2_mutex);
 			}
 		}
-				pthread_mutex_unlock(&mutex3_mutex);
-				pthread_mutex_unlock(&mutex4_mutex);
+		pthread_mutex_unlock(&mutex3_mutex);
+		pthread_mutex_unlock(&mutex4_mutex);
 	}
 	
-	while (readyQueue->size > 0) {
-		PCB_destruct(dequeue(readyQueue));
-	}
+	// REMOVED THIS, THIS SHOULD JUST BE IN QUEUE_DESTRUCT
+	// while (readyQueue->size > 0) {
+	// 	PCB_destruct(dequeue(readyQueue));
+	// }
 	
 	queue_destruct(readyQueue);
 	queue_destruct(newProcessQueue);
@@ -212,12 +218,15 @@ void mainloopFunction(struct cpu *self) {
 }
 
 int CheckIOTrap1(PCB_p currProcess) { //goes through IO trap array in currProcess and checks if equal to 
+	printf("In CheckIOTrap1\n");
 	if (currProcess == NULL) {
-		printf("CheckIOTrap1 currProcess is NULL");
+		printf("CheckIOTrap1 currProcess is NULL\n");
 	} else {
+		PCB_toString(currProcess);
 		int i = 0, trap;
 		int pc = PCB_get_pc(currProcess);
 		if (currProcess->IO_1Trap[i]  == pc) {
+			printf("CheckIOTrap1 finished with exit code 1");
 			return 1;
 		}
 		while (currProcess->IO_1Trap[i] != pc && i < 10) {
@@ -225,9 +234,11 @@ int CheckIOTrap1(PCB_p currProcess) { //goes through IO trap array in currProces
 			i++;
 			trap = currProcess->IO_1Trap[i];
 			if (trap < 0) {
+				printf("CheckIOTrap1 finished with exit code 0");
 				return 0;
 			}
 			else if (currProcess->IO_1Trap[i]  == pc) {
+				printf("CheckIOTrap1 finished with exit code 1");
 				printf("\nMATCH pc = %lu IO_1Trap = %i=======================================================================================", currProcess->pc, currProcess->IO_1Trap[i]);
 				return 1;
 			} 
@@ -237,27 +248,31 @@ int CheckIOTrap1(PCB_p currProcess) { //goes through IO trap array in currProces
 }
 
 int CheckIOTrap2(PCB_p currProcess) { //goes through IO trap array in currProcess and checks if equal to PC
+	printf("In CheckIOTrap2\n");
 	if (currProcess == NULL) {
-		printf("CheckIOTrap2 currProcess is NULL");
-	}
-
-
-	int i = 0, trap;
-	int pc = PCB_get_pc(currProcess);
-	if (currProcess->IO_2Trap[i]  == pc) {
-		return 1;
-	}
-	while (currProcess->IO_2Trap[i] != pc && i < 10) {
-		trap = currProcess->IO_2Trap[i];
-		i++;
-		trap = currProcess->IO_2Trap[i];
-		if (trap < 0) {
-			return 0;
-		}
-		else if (currProcess->IO_2Trap[i]  == pc) {
-			printf("\nMATCH pc = %lu IO_2Trap = %i=======================================================================================", currProcess->pc, currProcess->IO_2Trap[i]);
+		printf("CheckIOTrap2 currProcess is NULL\n");
+	} else {
+		PCB_toString(currProcess);
+		int i = 0, trap;
+		int pc = PCB_get_pc(currProcess);
+		if (currProcess->IO_2Trap[i]  == pc) {
+			printf("CheckIOTrap2 finished with exit code 1");
 			return 1;
-		} 
+		}
+		while (currProcess->IO_2Trap[i] != pc && i < 10) {
+			trap = currProcess->IO_2Trap[i];
+			i++;
+			trap = currProcess->IO_2Trap[i];
+			if (trap < 0) {
+				printf("CheckIOTrap2 finished with exit code 0");
+				return 0;
+			}
+			else if (currProcess->IO_2Trap[i]  == pc) {
+				printf("CheckIOTrap2 finished with exit code 1");
+				printf("\nMATCH pc = %lu IO_2Trap = %i=======================================================================================", currProcess->pc, currProcess->IO_2Trap[i]);
+				return 1;
+			} 
+		}
 	}
 	return 0;
 }
@@ -265,7 +280,7 @@ int CheckIOTrap2(PCB_p currProcess) { //goes through IO trap array in currProces
 
 PCB_p IOTrapHandler(int IONumber, Queue_q waitingQ, Queue_q readyQueue, PCB_p currProcess) {
 	if (currProcess == NULL) {
-		printf("IOTrapHandler currProcess is NULL");
+		printf("IOTrapHandler currProcess is NULL\n");
 	}
 
 
@@ -334,7 +349,7 @@ PCB_p scheduler(enum interrupt_type inter_type, PCB_p currProcess, Queue_q ready
 
 PCB_p dispatcher(PCB_p currProcess, Queue_q readyQueue) {
 	if (currProcess == NULL) {
-		printf("dispatcher currProcess is NULL");
+		printf("dispatcher currProcess is NULL\n");
 	}
 
 
@@ -362,21 +377,28 @@ PCB_p RoundRobinPrint(PCB_p currProcess, Queue_q readyQueue) {
 
 	if (currProcess == NULL) {
 		printf("RoundRobinPrint currProcess is NULL");
+	} else {
+		printf("\n\nDispatcher information:\n\nCurrent Progress: ");
+		PCB_toString(currProcess);
 	}
-
-	printf("\n\nDispatcher information:\n\nCurrent Progress: ");
-	PCB_toString(currProcess);
-	printf("Switching to: ");
-	PCB_toString(peek(readyQueue));
-	printf("\n");
-	toString(readyQueue);
-	PCB_p newCurrentProcess = dequeue(readyQueue);
-	PCB_set_state(newCurrentProcess, running);
-	SysStack = PCB_get_pc(newCurrentProcess);
-	printf("\nNow Running: ");
-	PCB_toString(newCurrentProcess);
-	printf("\n\n");
-	return newCurrentProcess;
+	if (readyQueue->size > 0) {
+		printf("Switching to: ");
+		PCB_toString(peek(readyQueue));
+		printf("\n");
+		toString(readyQueue);
+		PCB_p newCurrentProcess = dequeue(readyQueue);
+		PCB_set_state(newCurrentProcess, running);
+		SysStack = PCB_get_pc(newCurrentProcess);
+		printf("\nNow Running: ");
+		PCB_toString(newCurrentProcess);
+		printf("\n\n");
+		return newCurrentProcess;
+	} else {
+		printf("Ready queue is empty");
+		return NULL;
+	}
+	return NULL;
+	
 }
 
 void *Timer(void *args) {

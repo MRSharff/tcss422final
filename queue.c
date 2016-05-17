@@ -8,6 +8,13 @@ Queue_q queue_construct (void) {// returns a queue pointer to heap allocation
 }
 
 void queue_destruct (Queue_q q) { 
+
+    // If the queue has anything left in it, destroy/free them
+    while (q->size > 0) {
+        PCB_destruct(dequeue(q));
+    }
+
+    // Finally, free the queue
 	free(q);
 }
 
