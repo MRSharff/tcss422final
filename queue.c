@@ -7,7 +7,7 @@ Queue_q queue_construct (void) {// returns a queue pointer to heap allocation
 	return q;
 }
 
-void queue_destruct (Queue_q q) { 
+void queue_destruct (Queue_q q) {
 
     // If the queue has anything left in it, destroy/free them
     while (q->size > 0) {
@@ -23,7 +23,7 @@ int queue_init (Queue_q q) {      // sets default values for member data
 		q->size = DEFAULT_SIZE;
 		q->counter = DEFAULT_COUNTER;
 		return 0;
-	
+
 }
 
 Queue * enqueue (Queue *queue, PCB *pcb) {
@@ -49,13 +49,14 @@ PCB * dequeue(Queue *queue) {
     if (queue->size == 0) {
         printf("Queue is empty\n");
         return NULL;
-    } 
-	else {
-        queue->size--;
-        PCB *returnPcb = queue->head->pcb;
-        queue->head = queue->head->next;
-		queue->counter--;
-        return returnPcb;
+    } else {
+      queue->size--;
+      PCB *returnPcb = queue->head->pcb;
+      Node * the_node = queue->head;
+      queue->head = queue->head->next;
+      queue->counter--;
+      free(the_node);
+      return returnPcb;
     }
 }
 
@@ -82,7 +83,7 @@ void toString(Queue *queue) {
             current = current->next;
             if(current == NULL) printf("-*\n");
         }
-		//printf(" : contents: PID: 0x%lx, Priority: 0x%x, state: %i, PC: 0x%lx\n", 
+		//printf(" : contents: PID: 0x%lx, Priority: 0x%x, state: %i, PC: 0x%lx\n",
 		//		PCB_get_pid(queue->rear->pcb), PCB_get_priority(queue->rear->pcb), queue->rear->pcb->state, PCB_get_pc(queue->rear->pcb));
     }
 }

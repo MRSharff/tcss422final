@@ -1,6 +1,6 @@
 /*
 	PCB class that contains all the methods involving the PCB struct.
-	
+
 	@version 1
 	4/8/16
 	@author Joshua Cho
@@ -22,7 +22,7 @@ void PCB_destruct (PCB_p p) {  // deallocates pcb from the heap
 	if (!p) {
 		print_error(1);
 	}
-	else 
+	else
 	free(p);
 }
 
@@ -35,10 +35,10 @@ int PCB_init (PCB_p p) {      // sets default values for member data
 		p->state = DEFAULT_STATE;
 		p->priority = DEFAULT_PRIORITY;
 		p->pc = DEFAULT_PC;
-		p->maxpc = DEFAULT_MAXPC;					
-		p->creation = time(NULL); 	
-		p->termination = 0;	
-		p-> terminate = TERMINATE_COUNT; 
+		p->maxpc = DEFAULT_MAXPC;
+		p->creation = time(NULL);
+		p->termination = 0;
+		p-> terminate = TERMINATE_COUNT;
 		p->termCount = 0;
 		IO_Trap_init(p);
 		return 0;
@@ -47,22 +47,22 @@ int PCB_init (PCB_p p) {      // sets default values for member data
 
 void IO_Trap_init(PCB_p p) {
 	int currIndex = 0, currPC = 0;
-	
+
 	while (currPC < DEFAULT_MAXPC && currIndex < 10) {
 		srand(time(NULL));
 		int r = (random() % DEFAULT_MAXPC - currPC) + currPC;
 		p->IO_1Trap[currIndex] = r;
 		currIndex++;
-	} 
+	}
 	currIndex = 0, currPC = 0;
-	
+
 	while (currPC < DEFAULT_MAXPC && currIndex < 10) {
 		srand(time(NULL));
 		int r = (random() % DEFAULT_MAXPC - currPC) + currPC;
 		p->IO_2Trap[currIndex] = r;
 		currIndex++;
-	} 
-	
+	}
+
 }
 
 int PCB_set_pid (PCB_p p, unsigned long num) {		//sets pid value for the pcb
@@ -91,29 +91,30 @@ int PCB_set_state (PCB_p p, enum state_type s) {	//sets state for the pcb
 
 const char* PCB_get_state(PCB_p p) {	//returns char pointer containing state of the pcb
 	char *state;
-	if (!p) {
+	if (p == NULL) {
+    printf("In PCB_get_state: p was NULL\n");
 		print_error(1);
 	}
 	switch (p->state) {
-      case created: 
+      case created:
 		state = "created";
 		break;
-      case ready: 
+      case ready:
 		state = "ready";
 		break;
-	  case running: 
+	  case running:
 		state = "running";
 		break;
-	  case interrupted: 
+	  case interrupted:
 		state = "interrupted";
 		break;
-	  case waiting: 
+	  case waiting:
 	    state = "waiting";
 		break;
-	  case halted: 
+	  case halted:
 		state = "halted";
 		break;
-	  case terminated: 
+	  case terminated:
 		state = "terminated";
    }
    return state;
@@ -153,7 +154,7 @@ unsigned long PCB_get_pc (PCB_p p) {	//returns pc of the pcb
 /*
 void PCB_toString (PCB_p p, char* str) {  // returns a string representing the contents of the pcb
 	char temp[200];
-	snprintf(temp, 200, "pid = 0x%lu pc = 0x%lu state = %s\n\n", 
+	snprintf(temp, 200, "pid = 0x%lu pc = 0x%lu state = %s\n\n",
 			PCB_get_pid(p), PCB_get_pc(p), PCB_get_state(p));
 	strcpy(str, temp);
 }
@@ -169,9 +170,12 @@ int PC_Increment(PCB_p p) {
 	}
 	return 0;
 }
-void PCB_toString (PCB_p p) { 
-	printf("pid = 0x%lu pc = 0x%lu state = %s\n", 
-			PCB_get_pid(p), PCB_get_pc(p), PCB_get_state(p));
+
+void PCB_toString (PCB_p p) {
+  if (p == NULL) {
+    printf("in toString: p was null");
+  } else {
+  	printf("pid = 0x%lu pc = 0x%lu state = %s\n",
+  			PCB_get_pid(p), PCB_get_pc(p), PCB_get_state(p));
+  }
 }
-
-
