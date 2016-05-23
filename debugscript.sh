@@ -6,5 +6,5 @@
 
 rm run
 rm output.txt
-gcc -g pcb.c queue.c errors.c discontinuities.c -o run -pthread
+gcc -g pcb.c errors.c fifo_queue.c priority_queue.c operating_system.c -o run
 

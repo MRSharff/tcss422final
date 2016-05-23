@@ -1,181 +1,107 @@
-/*
-	PCB class that contains all the methods involving the PCB struct.
-
-	@version 1
-	4/8/16
-	@author Joshua Cho
+/**
+* By Mat Sharff
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "pcb.h"
 
+/** Used for printing out state name based on state enum held in pcb */
+const char * state_names[] = {
+  "New", "Ready", "Running", "Interrupted", "Waiting", "Halted"
+};
 
-PCB_p PCB_construct (void) {// returns a pcb pointer to heap allocation
-	PCB_p p = (PCB_p) malloc (sizeof(PCB));
-	return p;
+/** The string format of a PCB, also the longest string it can be. ~82 */
+const char * string_format = "PID: 0x7FFFFFFFFFFFFFFF, State: Interrupted, Priority: 0xF, PC: 0x7FFFFFFFFFFFFFFF";
+
+PCB_p PCB_construct(void) {
+  return malloc(sizeof(PCB));
 }
 
-void PCB_destruct (PCB_p p) {  // deallocates pcb from the heap
-	if (!p) {
-		print_error(1);
-	}
-	else
-	free(p);
+void PCB_destruct(PCB_p the_pcb) {
+  free(the_pcb);
 }
 
-int PCB_init (PCB_p p) {      // sets default values for member data
-	if (!p) {
-		return 1;
-	}
-	else {
-		p->pid = DEFAULT_PID;
-		p->state = DEFAULT_STATE;
-		p->priority = DEFAULT_PRIORITY;
-		p->pc = DEFAULT_PC;
-		p->maxpc = DEFAULT_MAXPC;
-		p->creation = time(NULL);
-		p->termination = 0;
-		p-> terminate = TERMINATE_COUNT;
-		p->termCount = 0;
-		IO_Trap_init(p);
-		return 0;
-	}
-}
-
-void IO_Trap_init(PCB_p p) {
-	int currIndex = 0, currPC = 0;
-
-	while (currPC < DEFAULT_MAXPC && currIndex < 10) {
-		srand(time(NULL));
-		int r = (random() % DEFAULT_MAXPC - currPC) + currPC;
-		p->IO_1Trap[currIndex] = r;
-		currIndex++;
-	}
-	currIndex = 0, currPC = 0;
-
-	while (currPC < DEFAULT_MAXPC && currIndex < 10) {
-		srand(time(NULL));
-		int r = (random() % DEFAULT_MAXPC - currPC) + currPC;
-		p->IO_2Trap[currIndex] = r;
-		currIndex++;
-	}
-
-}
-
-int PCB_set_pid (PCB_p p, unsigned long num) {		//sets pid value for the pcb
-	if (!p) {
-		return 1;
-	}
-	else if (num < 0) return 2;
-	else p->pid = num;
-	return 0;
-}
-
-unsigned long PCB_get_pid (PCB_p p) {  // returns pid of the process
-	if (!p) {
-		print_error(1);
-	}
-	return p->pid;
-}
-
-int PCB_set_state (PCB_p p, enum state_type s) {	//sets state for the pcb
-	if (!p) {
-		return 1;
-	}
-	else p->state = s;
-	return 0;
-}
-
-const char* PCB_get_state(PCB_p p) {	//returns char pointer containing state of the pcb
-	char *state;
-	if (p == NULL) {
-    printf("In PCB_get_state: p was NULL\n");
-		print_error(1);
-	}
-	switch (p->state) {
-      case created:
-		state = "created";
-		break;
-      case ready:
-		state = "ready";
-		break;
-	  case running:
-		state = "running";
-		break;
-	  case interrupted:
-		state = "interrupted";
-		break;
-	  case waiting:
-	    state = "waiting";
-		break;
-	  case halted:
-		state = "halted";
-		break;
-	  case terminated:
-		state = "terminated";
-   }
-   return state;
-}
-
-int PCB_set_priority (PCB_p p, unsigned short num) {	//sets priority of the pcb to num
-	if (!p) {
-		return 1;
-	}
-	else if (num < 0) return 2;
-	else p->priority = num;
-	return 0;
-}
-
-unsigned short PCB_get_priority (PCB_p p) {		//returns priority of the pcb
-	if (!p) {
-		print_error(1);
-	}
-	return p->priority;
-}
-
-int PCB_set_pc (PCB_p p, unsigned long num) {	//sets pc of the pcb to num
-	if (!p) {
-		return 1;
-	}
-	else p->pc = num;
-	return 0;
-}
-
-unsigned long PCB_get_pc (PCB_p p) {	//returns pc of the pcb
-	if (!p) {
-		print_error(1);
-	}
-	return p->pc;
-}
-
-/*
-void PCB_toString (PCB_p p, char* str) {  // returns a string representing the contents of the pcb
-	char temp[200];
-	snprintf(temp, 200, "pid = 0x%lu pc = 0x%lu state = %s\n\n",
-			PCB_get_pid(p), PCB_get_pc(p), PCB_get_state(p));
-	strcpy(str, temp);
-}
-*/
-int PC_Increment(PCB_p p) {
-	p->pc++;
-	if(p->pc > DEFAULT_MAXPC) { //we reached max value and now we need to reset the PC value to 0
-		p->pc = 0;
-		p->termCount++;
-		if(p->termCount >= p->terminate) {
-			return 1; //this function needs to be termianted.
-		}
-	}
-	return 0;
-}
-
-void PCB_toString (PCB_p p) {
-  if (p == NULL) {
-    printf("in toString: p was null");
-  } else {
-  	printf("pid = 0x%lu pc = 0x%lu state = %s\n",
-  			PCB_get_pid(p), PCB_get_pc(p), PCB_get_state(p));
+void PCB_randomize_IO_arrays(PCB_p the_pcb) {
+  int array_num, array_row, num;
+  num = 0;
+  for (array_row = 0; array_row < 4; array_row++) {
+    num += (rand() % 199) + 1;
+    the_pcb->io_1_[array_row] = num; //TODO: CHANGE BACK TO num from -1
+    num += (rand() % 199) + 1;
+    the_pcb->io_2_[array_row] = num;
   }
+}
+
+int PCB_init(PCB_p the_pcb) {
+  if (the_pcb != NULL) {
+    the_pcb->pid = DEFAULT_PID;
+    the_pcb->state = DEFAULT_STATE;
+    the_pcb->priority = DEFAULT_PRIORITY;
+    the_pcb->pc = DEFAULT_PC;
+    the_pcb->sw = 0;
+    the_pcb->max_pc = 0; // TODO: controller sets this.
+    the_pcb->creation = clock();
+    the_pcb->termination = 0; // set when enters terminate queue
+    the_pcb->terminate = 0; // set by controller
+    the_pcb->term_count = 0; // set by controller
+    return NO_ERRORS;
+  }
+  return NULL_POINTER;
+}
+
+int PCB_set_pid(PCB_p the_pcb, unsigned long the_pid) {
+  if (the_pcb != NULL) {
+    the_pcb->pid = the_pid;
+    return NO_ERRORS;
+  }
+  return NULL_POINTER;
+}
+
+unsigned long PCB_get_pid(PCB_p the_pcb) {
+  if (the_pcb != NULL) {
+    return the_pcb->pid;
+  }
+  printf("the_pcb was null in get_pid");
+}
+
+pcb_state PCB_get_state(PCB_p the_pcb) {
+  if (the_pcb != NULL) {
+    return the_pcb->state;
+  }
+  printf("the_pcb was null in get_state");
+}
+
+int PCB_set_state(PCB_p the_pcb, pcb_state the_state) {
+  if (the_pcb != NULL) {
+    the_pcb->state = the_state;
+    return NO_ERRORS;
+  }
+  return NULL_POINTER;
+}
+
+char * PCB_to_string(PCB_p the_pcb) {
+  if (the_pcb != NULL) {
+    static char return_string[100];
+    sprintf(return_string, "PID: 0x%luX, State: %s, Priority: 0x%hX, PC: 0x%lu, term_count:%lu",
+            the_pcb->pid, state_names[the_pcb->state], the_pcb->priority, the_pcb->pc, the_pcb->term_count);
+    return return_string;
+  }
+  return "Null";
+}
+
+int PCB_test(void) {
+  PCB_p test_pcb = malloc(sizeof(PCB));
+  test_pcb->pid = 18;
+  test_pcb->state = running;
+  test_pcb->priority = 1;
+  test_pcb->pc = 0;
+
+  char * pcb_string = "PID: , State: , Priority: , PC: ";
+
+  printf("Size of PCB is: %lu\n", sizeof(PCB));
+  printf("Size of pcb_string is: %lu\n", sizeof(pcb_string));
+  printf("Size of test_pcb is: %lu\n", sizeof(*test_pcb));
+  printf("%s\n", PCB_to_string(test_pcb));
+
+  // printf("size of pcb string: %lu\n", sizeof(PCB_to_string(test_pcb)));
+  free(test_pcb);
 }
