@@ -1,0 +1,47 @@
+main
+
+initialize:
+Create 4 FIFO queues
+ - queue for newly created (some with randomly populated PCB's)
+ - wait queue for IO_1
+ - wait queue for IO_2
+ - queue for terminated
+ 
+Create threads (timer, IO_1_device, IO_2_device)
+End Initialize
+    
+    CPU Loop
+        
+        Increment PC of current running process
+        Check to see if terminate equals term count and put into termination queue
+        Check 3 threads if they have produced an interrupt
+            
+            
+            Case 1 (Highest Priority) Timer Interrupt:
+                Calls scheduler to swap process
+                Calls dispatcher
+                    
+                    
+            
+            Case 2 IO_1_Device Interrupt
+                Takes PCB from interrupted to Ready
+                Dequeues from wait to ready queue
+                
+                
+            
+            Case 3 IO_2_Device Interrupt
+                Takes PCB from interrupted to Ready
+                Dequeues from wait to ready queue
+            
+            
+            Function Trap Service Handler
+                Compares PC value to the IO trap arrays
+                Timer for IO thread is set to 3-5 times value of quantum.
+                PCB is added to wait queue of IO_1_Device
+                
+    
+    End Loop
+    
+End Main
+ 
+
