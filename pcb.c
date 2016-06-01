@@ -6,7 +6,7 @@
 
 /** Used for printing out state name based on state enum held in pcb */
 const char * state_names[] = {
-  "New", "Ready", "Running", "Interrupted", "Waiting", "Halted"
+  "New", "Ready", "Running", "Interrupted", "Waiting", "Halted", "Terminated"
 };
 
 /** The string format of a PCB, also the longest string it can be. ~82 */
@@ -44,6 +44,9 @@ int PCB_init(PCB_p the_pcb) {
     the_pcb->termination = 0; // set when enters terminate queue
     the_pcb->terminate = 0; // set by controller
     the_pcb->term_count = 0; // set by controller
+
+    // New for final project
+    the_pcb->boost = 0;
 
     // Sets IO arrays to 0 which means no IO requests
     for (array_row = 0; array_row < 4; array_row++) {

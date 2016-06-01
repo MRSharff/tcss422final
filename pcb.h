@@ -5,15 +5,22 @@
 #ifndef PCB_H_
 #define PCB_H_
 
+/* Default values */
 #define DEFAULT_PID 0
 #define DEFAULT_STATE 0
 #define DEFAULT_PRIORITY 0
 #define DEFAULT_PC 0
+#define TRAP_SIZE 4
 
 // /** Exit Codes */
 // #define OK 0
 // #define NULL_OBJECT 1
 // #define FAIL 2
+
+/* Type of PCB*/
+#define NORMAL_PCB 0
+#define CONSUMER 1
+#define PRODUCER 2
 
 
 #include <stdio.h>
@@ -22,7 +29,7 @@
 #include "errors.h"
 
 typedef enum state_type {
-  new, ready, running, interrupted, waiting, halted
+  new, ready, running, interrupted, waiting, halted, terminated
 } pcb_state;
 
 typedef struct pcb {
@@ -37,8 +44,17 @@ typedef struct pcb {
   unsigned long terminate; // How many times the PC is allowed hit max_pc
   unsigned long term_count; // How many times the PC HAS hit max_pc
 
-  int io_1_[4];
-  int io_2_[4];
+  int io_1_[TRAP_SIZE];
+  int io_2_[TRAP_SIZE];
+
+  // New for final project
+  unsigned int role; // Type of pcb: 0: normal, 1: consumer or  2: producer.
+  unsigned long try_lock_trap[TRAP_SIZE];
+  unsigned long unlock_mutex[TRAP_SIZE];
+  unsigned long wait_cond[TRAP_SIZE];
+  unsigned long sign_cond[TRAP_SIZE];
+  unsigned int *global_variable; //pointer to the global variable.
+  unsigned int boost; //if this PCB is low priority, boost it to higher level if this var = 1. after done, change it back to 0.
 
 } PCB;
 typedef PCB * PCB_p;
