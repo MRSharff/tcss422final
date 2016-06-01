@@ -59,14 +59,17 @@ int FIFOq_enqueue(FIFOq_p queue, PCB_p pcb) {
 }
 
 PCB_p FIFOq_dequeue(FIFOq_p queue) {
+  node_p old_head;
+  PCB_p result = NULL;
+
   queue->size--; // decrement size
   if (queue != NULL) {
-    node_p old_head = queue->head; //set old head to current head
+    old_head = queue->head; //set old head to current head
     if (queue->size != 0) { // queue is not empty, no new head
       queue->head = old_head->next; // set head to the next of the old head
     }
 
-    PCB_p result = old_head->pcb;
+    result = old_head->pcb;
     free(old_head); // Free the old head node
     return result;
   }

@@ -13,7 +13,7 @@ const char * state_names[] = {
 const char * string_format = "PID: 0x7FFFFFFFFFFFFFFF, State: Interrupted, Priority: 0xF, PC: 0x7FFFFFFFFFFFFFFF";
 
 PCB_p PCB_construct(void) {
-  return malloc(sizeof(PCB));
+  return calloc(1, sizeof(PCB));
 }
 
 void PCB_destruct(PCB_p the_pcb) {
@@ -32,6 +32,7 @@ void PCB_randomize_IO_arrays(PCB_p the_pcb) {
 }
 
 int PCB_init(PCB_p the_pcb) {
+  int array_row;
   if (the_pcb != NULL) {
     the_pcb->pid = DEFAULT_PID;
     the_pcb->state = DEFAULT_STATE;
@@ -43,6 +44,12 @@ int PCB_init(PCB_p the_pcb) {
     the_pcb->termination = 0; // set when enters terminate queue
     the_pcb->terminate = 0; // set by controller
     the_pcb->term_count = 0; // set by controller
+
+    // Sets IO arrays to 0 which means no IO requests
+    for (array_row = 0; array_row < 4; array_row++) {
+      the_pcb->io_1_[array_row] = 0; //TODO: CHANGE BACK TO num from -1
+      the_pcb->io_2_[array_row] = 0;
+    }
     return NO_ERRORS;
   }
   return NULL_POINTER;
@@ -80,9 +87,9 @@ int PCB_set_state(PCB_p the_pcb, pcb_state the_state) {
 
 char * PCB_to_string(PCB_p the_pcb) {
   if (the_pcb != NULL) {
-    static char return_string[100];
-    sprintf(return_string, "PID: 0x%luX, State: %s, Priority: 0x%hX, PC: 0x%lu, term_count:%lu",
-            the_pcb->pid, state_names[the_pcb->state], the_pcb->priority, the_pcb->pc, the_pcb->term_count);
+    static char return_string[82 + 1];
+    sprintf(return_string, "PID: 0x%lX, State: %s, Priority: 0x%hX, PC: 0x%lX",
+            the_pcb->pid, state_names[the_pcb->state], the_pcb->priority, the_pcb->pc);
     return return_string;
   }
   return "Null";

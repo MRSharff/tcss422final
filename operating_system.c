@@ -8,13 +8,16 @@
 
 //The following are initialized in main
 unsigned long pid_counter; // Needs to be mutex locked if using multiple cpus on different threads
+unsigned long pc_register;
 unsigned long sys_stack;
 int dispatch_counter;
 int create_count;
 int io_1_downcounter;
 int io_2_downcounter;
 int timer_count;
-unsigned long pc_register;
+
+// Producer-Consumer Pair variables
+int producer_consumer_variables[10]; // no more than 10
 
 int total_processes_created;
 
@@ -28,6 +31,10 @@ FIFOq_p terminate_queue;
 //This pointer is changing constantly, initially set to point to idl in main
 PCB_p current_process;
 
+/*************************************************************
+*     Helper methods
+**************************************************************/
+
 long true_random(long max) {
   unsigned long num_bins, num_rand, bin_size, defect;
   long x;
@@ -39,6 +46,30 @@ long true_random(long max) {
     x = random();
   } while (num_rand - defect <= (unsigned long)x);
   return x/bin_size;
+}
+
+// Create a set of processes that do not request I/O or synchronization services.
+// These are just fillers to take up time. Dynamically create and terminate with
+// no more than 25 running at a time.
+int create_compute_intensive_processes(int amount) {
+  PCB_p temp;
+  int i;
+  for (i = 0; i < amount; i++) {
+    temp = PCB_construct();
+    PCB_init(temp);
+    PCB_randomize_IO_arrays(temp);
+    temp->max_pc = (rand() % 4000) + 2000;
+    temp->terminate = rand() % 5 + 1; // These compute intensive processes do not terminate
+    temp->term_count = 0;
+    PCB_set_pid(temp, pid_counter);
+    pid_counter++;
+    FIFOq_enqueue(created_queue, temp);
+    printf("Process PID: %lu io arrays:\n", temp->pid);
+    int arrcntr;
+    for (arrcntr = 0; arrcntr < 4; arrcntr++) {
+      printf("io1[%d]: %d, io2[%d]: %d\n", arrcntr, temp->io_1_[arrcntr], arrcntr, temp->io_2_[arrcntr]);
+    }
+  }
 }
 
 PCB_p round_robin() {
@@ -228,13 +259,15 @@ int scheduler(enum interrupt_type int_type) {
   return return_status;
 }
 
-int check_terminate(void) { // simulates process throwing a temrinate interrupt
+// Checks if the current process should terminate
+// Returns a 1 if it should
+int check_terminate(void) { // simulates process throwing a terminate interrupt
   if (current_process != NULL) {
     if (pc_register == current_process->max_pc) { // if the current process is at it's max pc
       pc_register = 0;
       if (current_process->terminate > 0) { // processes with 0 never terminate
         current_process->term_count++; // increment the term count (how many times has it passed its max pc)
-        if (current_process->term_count == current_process->terminate) {
+        if (current_process->term_count == current_process->terminate) { // if the term_count is equal to terminate, it is done
           return 1;
         }
       }
@@ -257,8 +290,8 @@ int check_timer(void) {
 int check_for_io_1_completion(void) {
   if (io_1_downcounter > 0) { // it's still downcounting
     io_1_downcounter--;
-  } else if (io_1_downcounter == 0) {
-    io_1_downcounter = -1;
+  } else if (io_1_downcounter == 0) { // io has completed
+    io_1_downcounter = -1; // set to -1 so it doesn't keep downcounting and so it doesn't keep returning 1
     return 1;
   }
   return 0; // not done or not even running
@@ -267,8 +300,8 @@ int check_for_io_1_completion(void) {
 int check_for_io_2_completion(void) {
   if (io_2_downcounter > 0) { // it's still downcounting
     io_2_downcounter--;
-  } else if (io_2_downcounter == 0) {
-    io_2_downcounter = -1;
+  } else if (io_2_downcounter == 0) { // io has completed
+    io_2_downcounter = -1; // set to -1 so it doesn't keep downcounting and so it doesn't keep returning 1
     return 1;
   }
   return 0; // not done or not even running
@@ -276,21 +309,19 @@ int check_for_io_2_completion(void) {
 
 int check_io_request(PCB_p the_pcb) {
   int i;
-  for (i = 0; i < 4; i++) {
-    if (the_pcb->io_1_[i] == pc_register) {
-      printf("Current PCB: pid#%lu, io 1\n", the_pcb->pid);
-      return io_1_interrupt; // request for device number 1
-    }
-    if (the_pcb->io_2_[i] == pc_register) {
-      printf("Current PCB: pid#%lu, io 2\n", the_pcb->pid);
-      return io_2_interrupt; // request for device number 2
+  if (pc_register > 0) { // 0 in an io array means no interrupt
+    for (i = 0; i < 4; i++) {
+      if (the_pcb->io_1_[i] == pc_register) {
+        printf("Current PCB: pid#%lu, io 1\n", the_pcb->pid);
+        return io_1_interrupt; // request for device number 1
+      }
+      if (the_pcb->io_2_[i] == pc_register) {
+        printf("Current PCB: pid#%lu, io 2\n", the_pcb->pid);
+        return io_2_interrupt; // request for device number 2
+      }
     }
   }
   return 0;
-}
-
-void terminate_isr(void) {
-  scheduler(process_termination_interrupt);
 }
 
 int pseudo_isr(enum interrupt_type int_type) { //, unsigned long * cpu_pc_register) {
@@ -324,7 +355,7 @@ int pseudo_isr(enum interrupt_type int_type) { //, unsigned long * cpu_pc_regist
 
 void cpu(void) {
 
-  pc_register = 0;
+
   int i, run_count;
   int random_pc_increment;
   int error_check;
@@ -335,6 +366,7 @@ void cpu(void) {
   int is_io1_completion_interrupt;
   int is_io2_completion_interrupt;
   int is_terminate_state;
+  pc_register = 0;
 
   // main cpu loop
   // for (run_count = 0; run_count < RUN_TIME; run_count++) {
@@ -348,7 +380,7 @@ void cpu(void) {
     is_terminate_state = 0;
 
     if (create_count < CREATE_ITERATIONS) { // Create processes
-      rand_num_of_processes = rand() % 5;
+      rand_num_of_processes = true_random(5);
       printf("Creating %d processes\n", rand_num_of_processes);
       total_processes_created += rand_num_of_processes;
       for (i = 0; i < rand_num_of_processes; i++) {
@@ -464,6 +496,8 @@ int main(void) {
   // Run a cpu
   char * queue_string;
   cpu();
+
+
   printf("Ready Queue size: %d\n", ready_queue->size);
   printf("IO 1 Queue size: %d\n", io_1_waiting_queue->size);
   printf("IO 2 Queue size: %d\n", io_2_waiting_queue->size);
@@ -476,6 +510,9 @@ int main(void) {
   // Cleanup / free stuff to not have memory leaks
   FIFOq_destruct(ready_queue);
   FIFOq_destruct(created_queue);
+  FIFOq_destruct(io_1_waiting_queue);
+  FIFOq_destruct(io_2_waiting_queue);
+  FIFOq_destruct(terminate_queue);
 
   if (current_process != NULL) {
     if (current_process->pid != idl->pid) {
