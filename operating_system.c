@@ -2,9 +2,9 @@
 
 #include "operating_system.h"
 
-#define RUN_TIME 40000
-#define CREATE_ITERATIONS 3
-#define QUANTUM_DURATION 300
+// Trackers for amount of processes
+int io_process_count;
+int compute_intensive_processes;
 
 //The following are initialized in main
 unsigned long pid_counter; // Needs to be mutex locked if using multiple cpus on different threads
@@ -16,14 +16,15 @@ int io_1_downcounter;
 int io_2_downcounter;
 int timer_count;
 
-// Producer-Consumer Pair variables
-int producer_consumer_variables[10]; // no more than 10
+// Producer-Consumer Pair mutexes
+Mutex_p producer_consumer_mutexes[MAX_MUTEX_SIZE]; // no more than 10
+NUMBERq_p available_index_queue;
 
 int total_processes_created;
 
 PCB_p idl;
 FIFOq_p created_queue;
-FIFOq_p ready_queue; // Could use Priority queue since all PCB priorities will be same value
+PRIORITYq_p ready_queue; // Could use Priority queue since all PCB priorities will be same value
 FIFOq_p io_1_waiting_queue;
 FIFOq_p io_2_waiting_queue;
 FIFOq_p terminate_queue;
@@ -48,6 +49,9 @@ long true_random(long max) {
   return x/bin_size;
 }
 
+// Final Project Create processes section
+//*************************************************************************
+
 // Create a set of processes that do not request I/O or synchronization services.
 // These are just fillers to take up time. Dynamically create and terminate with
 // no more than 25 running at a time.
@@ -70,12 +74,22 @@ int create_compute_intensive_processes(int amount) {
       printf("io1[%d]: %d, io2[%d]: %d\n", arrcntr, temp->io_1_[arrcntr], arrcntr, temp->io_2_[arrcntr]);
     }
   }
+  return 0; // for right now
 }
+
+int create_producer_consumer_pairs() {
+  //TODO: implement this
+}
+
+//*************************************************************************
+// End final project Create processes section
+
+
 
 PCB_p round_robin() {
   if (ready_queue != NULL) {
-    if (!FIFOq_is_empty(ready_queue)) {
-      return FIFOq_dequeue(ready_queue);
+    if (!PRIORITYq_is_empty(ready_queue)) {
+      return PRIORITYq_dequeue(ready_queue);
     }
     return idl; // no processes in ready queue, idl should be put onto ready queue
   }
@@ -96,7 +110,7 @@ int dispatcher(PCB_p pcb_to_dispatch){
       printf("Now running: %s\n", PCB_to_string(pcb_to_dispatch));
       printf("Returned to Ready Queue: %s\n", PCB_to_string(current_process));
 
-      string = FIFOq_to_string(ready_queue);
+      string = PRIORITYq_to_string(ready_queue);
       printf("Ready Queue: %s\n\n", string);
       free(string);
     }
@@ -124,7 +138,7 @@ int timer_interrupt_handler(void) {
       if (dispatch_counter != 4) {
         printf("Process enqueued: %s\n", PCB_to_string(current_process));
       }
-      FIFOq_enqueue(ready_queue, current_process);
+      PRIORITYq_enqueue(ready_queue, current_process);
     }
     // if current_process was the idl process, we can just replace it
     return NO_ERRORS;
@@ -176,7 +190,7 @@ int io_completion_interrupt_handler(int the_io_device_number) {
       }
     }
     if (temp != NULL) {
-      FIFOq_enqueue(ready_queue, temp); // move current process ready queue
+      PRIORITYq_enqueue(ready_queue, temp); // move current process ready queue
       return NO_ERRORS;
     } else {
       printf("in io_request_trap: temp was null\n");
@@ -211,7 +225,7 @@ int scheduler(enum interrupt_type int_type) {
     temp = FIFOq_dequeue(created_queue);
     PCB_set_state(temp, ready);
     printf("Process enqueued: %s\n", PCB_to_string(temp));
-    FIFOq_enqueue(ready_queue, temp);
+    PRIORITYq_enqueue(ready_queue, temp);
   }
 
   // Determine what kind of interrupt happened
@@ -379,7 +393,7 @@ void cpu(void) {
     is_io_request_interrupt = 0;
     is_terminate_state = 0;
 
-    if (create_count < CREATE_ITERATIONS) { // Create processes
+    if (create_count < CREATE_ITERATIONS) { // Create IO processes
       rand_num_of_processes = true_random(5);
       printf("Creating %d processes\n", rand_num_of_processes);
       total_processes_created += rand_num_of_processes;
@@ -400,7 +414,16 @@ void cpu(void) {
         }
       }
       create_count++;
-    } // End create processes
+    } // End create IO processes
+
+    // Final Project Create processes section
+    //*************************************************************************
+
+
+
+
+    //*************************************************************************
+    // End final project Create processes section
 
     // Simulate running of current process (Execute instruction)
     pc_register++;
@@ -482,8 +505,10 @@ int main(void) {
   current_process = idl;
 
   // Create and initialize queues
-  ready_queue = FIFOq_construct();
-  FIFOq_init(ready_queue);
+  ready_queue = PRIORITYq_construct();
+  available_index_queue = NUMBERq_construct();
+  NUMBERq_init(available_index_queue, MAX_MUTEX_SIZE);
+  // PRIORITYq_init(ready_queue); // priority queue does not need to init
   created_queue = FIFOq_construct();
   FIFOq_init(created_queue);
   io_1_waiting_queue = FIFOq_construct();
@@ -508,7 +533,7 @@ int main(void) {
   printf("Total processes created: %d\n", total_processes_created);
 
   // Cleanup / free stuff to not have memory leaks
-  FIFOq_destruct(ready_queue);
+  PRIORITYq_destruct(ready_queue);
   FIFOq_destruct(created_queue);
   FIFOq_destruct(io_1_waiting_queue);
   FIFOq_destruct(io_2_waiting_queue);
