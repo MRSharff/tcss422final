@@ -16,9 +16,24 @@ int io_1_downcounter;
 int io_2_downcounter;
 int timer_count;
 
-// Producer-Consumer Pair mutexes
-Mutex_p producer_consumer_mutexes[MAX_MUTEX_SIZE]; // no more than 10
-NUMBERq_p available_index_queue;
+// Producer Consumer Pairs (hard coded 5 pairs)
+PCB_p producer[5];
+PCB_p consumer[5];
+
+Mutex_p mutex[5];
+
+cond_var_p cond_var[5];
+
+int prod_cons_shared_var[5];
+
+
+
+
+
+
+// Producer-Consumer Pair mutexes // not used anymore because we hard coded Prod-cons amount
+// Mutex_p producer_consumer_mutexes[MAX_MUTEX_SIZE]; // no more than 10
+// NUMBERq_p available_index_queue;
 
 int total_processes_created;
 
