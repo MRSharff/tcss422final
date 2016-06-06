@@ -4,7 +4,7 @@
 cond_var_p cond_var_p_construct(){
 	cond_var_p temp = (cond_var_p)malloc(sizeof(struct cond_var_struct));
 	temp->thread = NULL;
-	temp->mutex=NULL;
+	temp->mutex = NULL;
 	temp->next = NULL;
 }
 

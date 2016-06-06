@@ -16,18 +16,36 @@ int io_1_downcounter;
 int io_2_downcounter;
 int timer_count;
 
+//Producer increment instruction value
+unsigned long increment_instruction = 450;
+unsigned long print_instruction = 450;
+unsigned long change_increment_avail_instruction = 655;
+
 // Producer Consumer Pairs (hard coded 5 pairs)
 PCB_p producer[5];
 PCB_p consumer[5];
 
+
 Mutex_p mutex[5];
 
-cond_var_p cond_var[5];
+// analogous to bufavail, 0 to 1
+int increment_avail[5];
 
+// condition variables, like cond_var_type buf_not_full
+cond_var_p num_not_incremented[5];
+
+// like cond_var_type buf_not_empty
+cond_var_p num_not_printed[5];
+
+
+// pointed to by global variable in pcb
 int prod_cons_shared_var[5];
 
 
-
+//TODO: you must also alter your random generating algorithm for
+//the I/O arrays to make sure none of the numbers recorded there
+//interfere with these hand-crafted numbers, i.e. you don't want
+//to trap to an I/O after locking a mutex!
 
 
 
@@ -92,8 +110,38 @@ int create_compute_intensive_processes(int amount) {
   return 0; // for right now
 }
 
+
+
+
 int create_producer_consumer_pairs() {
-  //TODO: implement this
+  int i, j, k;
+  unsigned long var_val;
+  for (i = 0; i < 5; i++) { // 5 pairs
+    var_val = 300;
+    producer[i]->try_lock_trap[0] = var_val; // 300
+    consumer[i]->try_lock_trap[0] = var_val; // 300
+    var_val+= 1;
+    producer[i]->lock_trap[0] = var_val; // 301
+    consumer[i]->lock_trap[0] = var_val; // 301
+    var_val+= 1;
+    producer[i]->wait_cond[0] = var_val; // 302
+    consumer[i]->wait_cond[0] = var_val; // 302
+    var_val+= 1;
+    producer[i]->unlock_mutex[0] = var_val; // 303
+    consumer[i]->unlock_mutex[0] = var_val; // 303
+    var_val+= 350;
+    producer[i]->try_lock_trap[1] = var_val; // 653
+    consumer[i]->try_lock_trap[1] = var_val; // 653
+    var_val+= 1;
+    producer[i]->lock_trap[0] = var_val; // 654
+    consumer[i]->lock_trap[0] = var_val; // 654
+    var_val+= 2; // changing increment_avail happens at 655
+    producer[i]->sign_cond[1] = var_val; // 656
+    consumer[i]->sign_cond[1] = var_val; // 656
+    var_val+= 1;
+    producer[i]->unlock_mutex[1] = var_val; // 657
+    consumer[i]->unlock_mutex[1] = var_val; // 657
+  }
 }
 
 //*************************************************************************
@@ -440,8 +488,32 @@ void cpu(void) {
     //*************************************************************************
     // End final project Create processes section
 
+
+
     // Simulate running of current process (Execute instruction)
     pc_register++;
+
+
+    // TODO:If the producer or consumer is a certain pc, do the incrementing or printing
+    if (current_process->role == 2 && pc_register == increment_instruction) { //current process role is that of a producer, increment it's global variable
+      unsigned int * the_pointer = current_process->global_variable;
+      (*the_pointer)++;
+    } else if (current_process->role == 1 && pc_register == print_instruction) { // current process is a consumer, print the value
+      unsigned int * the_pointer = current_process->global_variable;
+      printf("PID: %lu, sequence: %d\n", current_process->pid, (*the_pointer));
+    } else if (current_process->role == 2 && pc_register == change_increment_avail_instruction) {
+      for (int c = 0; c < 5; c++) { // this is how we find out which variable to increment
+        if (current_process->pid == producer[c]) {
+          increment_avail[c]--;
+        }
+      }
+    } else if (current_process->role == 1 && pc_register == change_increment_avail_instruction) {
+      for (int c = 0; c < 5; c++) { // this is how we find out which variable to increment
+        if (current_process->pid == consumer[c]) {
+          increment_avail[c]++;
+        }
+      }
+    }
 
 
     // Check if process should be terminated
