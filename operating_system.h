@@ -2,8 +2,18 @@
 
 #ifndef OPERATING_SYSTEM_H_
 #define OPERATING_SYSTEM_H_
-#include "priority_queue.h"
+
 #include <time.h>
+
+#include "priority_queue.h"
+#include "cond_var_type.h"
+
+
+
+#define RUN_TIME 40000
+#define CREATE_ITERATIONS 3
+#define QUANTUM_DURATION 300
+#define MAX_MUTEX_SIZE 10
 
 enum interrupt_type {
   timer, io_1_interrupt, io_2_interrupt, io_1_completion_interrupt, io_2_completion_interrupt, process_termination_interrupt

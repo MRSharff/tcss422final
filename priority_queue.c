@@ -10,7 +10,8 @@ const char * pq_queue_separator = "->";
 const char * pq_queue_end = "-*";
 const char * pq_pcb_format = "P";
 
-const char * empty_priority_queue_string = "Q%d:Count=0: -* : contents: Empty";
+const char * empty_priority_queue_string = "Q:Count=0: -* : contents: Empty";
+const char * empty_queue_string = "Q%d:Count=0: -* : contents: Empty";
 
 PRIORITYq_p PRIORITYq_construct(void) {
   int i;
@@ -38,6 +39,7 @@ void PRIORITYq_destruct(PRIORITYq_p priority_queue) {
 int PRIORITYq_enqueue(PRIORITYq_p priority_queue, PCB_p pcb) {
   if (priority_queue != NULL && pcb != NULL) {
     FIFOq_enqueue(priority_queue->fifo_queues[pcb->priority], pcb);
+    priority_queue->size++;
     return NO_ERRORS;
   }
   print_error(NULL_POINTER);
@@ -48,6 +50,7 @@ PCB_p PRIORITYq_dequeue(PRIORITYq_p priority_queue) {
   int priority;
   for (priority = 0; priority < PRIORITY_RANGE; priority++) {
     if (FIFOq_is_empty(priority_queue->fifo_queues[priority]) == 0) {
+      priority_queue->size--;
       return FIFOq_dequeue(priority_queue->fifo_queues[priority]);
     }
   }
@@ -71,9 +74,9 @@ char * PRIORITYq_single_to_string(FIFOq_p queue, int priority) {
   // if the queue is empty, print a predefined empty queue string
   if (queue->size == 0) {
     printf("Queue was empty");
-    return_string = calloc(1, strlen(empty_priority_queue_string) * sizeof(char) + 10);
-    sprintf(return_string, empty_priority_queue_string, priority);
-    // strcat(return_string, empty_priority_queue_string);
+    return_string = calloc(1, strlen(empty_queue_string) * sizeof(char) + 10);
+    sprintf(return_string, empty_queue_string, priority);
+    // strcat(return_string, empty_queue_string);
     return return_string;
   }
 
@@ -177,6 +180,15 @@ char * PRIORITYq_to_string(PRIORITYq_p priority_queue) {
   char * p_queue_string;
   int string_size = 0;
   int priority;
+
+  // if the queue is empty, print a predefined empty queue string
+  if (priority_queue->size == 0) {
+    p_queue_string = calloc(1, strlen(empty_priority_queue_string) * sizeof(char) + 10);
+    strcat(p_queue_string, empty_priority_queue_string);
+    return p_queue_string;
+  }
+
+  // This is for figuring out the size needed for allocation
   for (priority = 0; priority < PRIORITY_RANGE; priority++) {
     if (FIFOq_is_empty(priority_queue->fifo_queues[priority]) == 0) {
       queue_string = PRIORITYq_single_to_string(priority_queue->fifo_queues[priority], priority);
@@ -184,6 +196,7 @@ char * PRIORITYq_to_string(PRIORITYq_p priority_queue) {
       free(queue_string);
     }
   }
+
   p_queue_string = calloc(1, string_size * sizeof(char) + 10);
   strcat(p_queue_string, "");
   for (priority = 0; priority < PRIORITY_RANGE; priority++) {
@@ -199,6 +212,11 @@ char * PRIORITYq_to_string(PRIORITYq_p priority_queue) {
     // strcat(p_queue_string, "\n");
   }
   return p_queue_string;
+}
+
+/** Returns 1 if the priorityq is empty, 0 otherwise. */
+int PRIORITYq_is_empty(PRIORITYq_p queue) {
+  return !queue->size;
 }
 
 int priority_test(void) {

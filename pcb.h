@@ -50,6 +50,7 @@ typedef struct pcb {
   // New for final project
   unsigned int role; // Type of pcb: 0: normal, 1: consumer or  2: producer.
   unsigned long try_lock_trap[TRAP_SIZE];
+  unsigned long lock_trap[TRAP_SIZE];
   unsigned long unlock_mutex[TRAP_SIZE];
   unsigned long wait_cond[TRAP_SIZE];
   unsigned long sign_cond[TRAP_SIZE];

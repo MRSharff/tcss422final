@@ -23,6 +23,9 @@ PCB_p PRIORITYq_dequeue(PRIORITYq_p);
 
 char * PRIORITYq_to_string(PRIORITYq_p);
 
+/** Returns 1 if the fifoq is empty, 0 otherwise. */
+int PRIORITYq_is_empty(PRIORITYq_p);
+
 int priority_test(void);
 
 #endif

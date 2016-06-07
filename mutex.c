@@ -25,7 +25,7 @@ int Mutex_trylock(Mutex_p m) {
 	}
 }
 
-PCB_p Mutex_unlock(Mutex_p m) {
+void Mutex_unlock(Mutex_p m) {
 
   if (m->owner == NULL) { // only for debugging
     printf("Unlocked called before any lock\n");
@@ -37,6 +37,6 @@ PCB_p Mutex_unlock(Mutex_p m) {
     printf("mutex was null in Mutex_unlock\n");
   }
 
-  return m->owner; // Need to enqueue back into ready queue
+  //return m->owner; // Need to enqueue back into ready queue
   //TODO: In OS loop, set the returned process state to ready and enqueue in ready queue
 }
