@@ -9,7 +9,7 @@ cond_var_p cond_var_p_construct(){
 	temp->next = NULL;
 }
 
-void cond_wait(cond_var_p condition_name, Mutex_p the_mutex){
+void cond_wait(cond_var_p condition_name, Mutex_p the_mutex, PRIORITYq_p the_ready_queue){
 	if(condition_name != NULL && the_mutex != NULL){
 		cond_var_p temp = condition_name;
 		cond_var_p temp1 = temp->next;
@@ -22,7 +22,7 @@ void cond_wait(cond_var_p condition_name, Mutex_p the_mutex){
 		temp2->mutex = the_mutex;
 		temp2->next = NULL;
 		temp->next = temp2;
-		Mutex_unlock(the_mutex);
+		Mutex_unlock(the_mutex, the_ready_queue);
 	}
 }
 

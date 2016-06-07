@@ -5,7 +5,6 @@
 
 #include <time.h>
 
-#include "priority_queue.h"
 #include "cond_var_type.h"
 
 

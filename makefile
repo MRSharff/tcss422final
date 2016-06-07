@@ -1,5 +1,5 @@
-all: operating_system.o fifo_queue.o pcb.o cond_var_type.o errors.o priority_queue.o
-	gcc operating_system.o fifo_queue.o pcb.o cond_var_type.o errors.o priority_queue.o -o z
+all: operating_system.o fifo_queue.o pcb.o cond_var_type.o errors.o priority_queue.o mutex.o
+	gcc operating_system.o fifo_queue.o pcb.o cond_var_type.o errors.o priority_queue.o mutex.o -o z
 operating_system.o: operating_system.c operating_system.h
 	gcc -c operating_system.c
 cond_var_type.o: cond_var_type.c cond_var_type.h

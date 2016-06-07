@@ -13,7 +13,8 @@ struct cond_var_struct {
 };
 
 cond_var_p cond_var_p_construct();
-void cond_wait(cond_var_p condition_name, Mutex_p mut);
+void cond_wait(cond_var_p condition_name, Mutex_p mut, PRIORITYq_p);
 PCB_p cond_signal(cond_var_p condition_name);
+void cond_var_p_destruct(cond_var_p condition);
 void cond_var_p_destruct(cond_var_p condition);
 #endif

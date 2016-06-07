@@ -2,6 +2,8 @@
 
 #include "operating_system.h"
 
+#define MAX_LOOPS 100000
+
 // Trackers for amount of processes
 int io_process_count;
 int compute_intensive_processes;
@@ -19,7 +21,7 @@ int timer_count;
 //Producer increment instruction value
 unsigned long increment_instruction = 450;
 unsigned long print_instruction = 450;
-unsigned long change_increment_avail_instruction = 655;
+unsigned long change_increment_avail_instruction = 656;
 
 // Producer Consumer Pairs (hard coded 5 pairs)
 PCB_p producer[5];
@@ -116,31 +118,58 @@ int create_compute_intensive_processes(int amount) {
 int create_producer_consumer_pairs() {
   int i, j, k;
   unsigned long var_val;
+  unsigned int pair_max_pc = 1000;
   for (i = 0; i < 5; i++) { // 5 pairs
     var_val = 300;
+	producer[i] = PCB_construct();
+	consumer[i] = PCB_construct();
+	PCB_init(producer[i]);
+	PCB_init(consumer[i]);
+	producer[i]->priority = 1;
+	consumer[i]->priority = 1;
+	producer[i]->role = 2;
+	consumer[i]->role = 1;
+	
+	increment_avail[i] = 1;
+	
+	mutex[i] = Mutex_construct();
+	
+	PCB_set_pid(producer[i], pid_counter);
+    pid_counter++;
+	PCB_set_pid(consumer[i], pid_counter);
+    pid_counter++;
+	
+	prod_cons_shared_var[i]=0;
+	producer[i]->global_variable = &prod_cons_shared_var[i];
+	consumer[i]->global_variable = &prod_cons_shared_var[i];
+	producer[i]->max_pc = pair_max_pc;
+	consumer[i]->max_pc = pair_max_pc;
+	
     producer[i]->try_lock_trap[0] = var_val; // 300
     consumer[i]->try_lock_trap[0] = var_val; // 300
     var_val+= 1;
     producer[i]->lock_trap[0] = var_val; // 301
     consumer[i]->lock_trap[0] = var_val; // 301
+    var_val+= 2;
+    producer[i]->wait_cond[0] = var_val; // 303
+    consumer[i]->wait_cond[0] = var_val; // 303
     var_val+= 1;
-    producer[i]->wait_cond[0] = var_val; // 302
-    consumer[i]->wait_cond[0] = var_val; // 302
-    var_val+= 1;
-    producer[i]->unlock_mutex[0] = var_val; // 303
-    consumer[i]->unlock_mutex[0] = var_val; // 303
+    producer[i]->unlock_mutex[0] = var_val; // 304
+    consumer[i]->unlock_mutex[0] = var_val; // 304
     var_val+= 350;
-    producer[i]->try_lock_trap[1] = var_val; // 653
-    consumer[i]->try_lock_trap[1] = var_val; // 653
+    producer[i]->try_lock_trap[1] = var_val; // 654
+    consumer[i]->try_lock_trap[1] = var_val; // 654
     var_val+= 1;
-    producer[i]->lock_trap[0] = var_val; // 654
-    consumer[i]->lock_trap[0] = var_val; // 654
-    var_val+= 2; // changing increment_avail happens at 655
-    producer[i]->sign_cond[1] = var_val; // 656
-    consumer[i]->sign_cond[1] = var_val; // 656
+    producer[i]->lock_trap[0] = var_val; // 655
+    consumer[i]->lock_trap[0] = var_val; // 655
+    var_val+= 2; // changing increment_avail happens at 656
+    producer[i]->sign_cond[1] = var_val; // 657
+    consumer[i]->sign_cond[1] = var_val; // 657
     var_val+= 1;
-    producer[i]->unlock_mutex[1] = var_val; // 657
-    consumer[i]->unlock_mutex[1] = var_val; // 657
+    producer[i]->unlock_mutex[1] = var_val; // 658
+    consumer[i]->unlock_mutex[1] = var_val; // 658
+	PRIORITYq_enqueue(ready_queue,producer[i]);
+	PRIORITYq_enqueue(ready_queue,consumer[i]);
   }
 }
 
@@ -445,6 +474,10 @@ void cpu(void) {
   int is_terminate_state;
   pc_register = 0;
 
+      // Final Project Create processes section
+    //*************************************************************************
+	create_producer_consumer_pairs();
+	
   // main cpu loop
   // for (run_count = 0; run_count < RUN_TIME; run_count++) {
   do {
@@ -479,8 +512,6 @@ void cpu(void) {
       create_count++;
     } // End create IO processes
 
-    // Final Project Create processes section
-    //*************************************************************************
 
 
 
@@ -513,7 +544,125 @@ void cpu(void) {
           increment_avail[c]++;
         }
       }
-    }
+    } else if (current_process->role == 2 && pc_register == 301) { // 2 is producer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				Mutex_lock(mutex[c], current_process);
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 301) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				Mutex_lock(mutex[c], current_process);
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 303) { // 2 is producer, if check
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				if (increment_avail[c] == 0) {
+					cond_wait(num_not_incremented[c], mutex[c], ready_queue);
+				}
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				if (increment_avail[c] == 1) {
+					cond_wait(num_not_printed[c], mutex[c], ready_queue);
+				}
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 304) { // 2 is producer, if check
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				Mutex_unlock(mutex[c], ready_queue);
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 304) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				Mutex_unlock(mutex[c], ready_queue);
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 655) { // 2 is producer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				Mutex_lock(mutex[c], current_process);
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 655) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				Mutex_lock(mutex[c], current_process);
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 656) { // 2 is producer, if check
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				increment_avail[c]--;
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				increment_avail[c]++;
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 303) { // 2 is producer, if check
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				if (increment_avail[c] == 0) {
+					printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[c]);
+					cond_signal(num_not_printed[c]);
+				}
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				if (increment_avail[c] == 0) {
+					printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[c]);
+					cond_signal(num_not_incremented[c]);
+				}
+				break;
+			}
+		}
+	} else if (current_process->role == 2 && pc_register == 304) { // 2 is producer, if check
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == producer[c]->pid) {
+				Mutex_unlock(mutex[c], ready_queue);
+				break;
+			}
+		}
+	} else if (current_process->role == 1 && pc_register == 304) { // 1 is consumer
+		for (int c = 0; c < 5; c++) {
+			if (current_process->pid == consumer[c]->pid) {
+				Mutex_unlock(mutex[c], ready_queue);
+				break;
+			}
+		}
+	} 
+	
+	//Check lock
+
+	//Check Try lock
+	
+	//Check unlock
+	
+	//Check cond_wait
+	
+	//Check cond_signal
 
 
     // Check if process should be terminated
@@ -565,9 +714,11 @@ void cpu(void) {
         printf("Unknown error\n");
         break;
     }
-  } while (ready_queue->size > 0 || io_1_waiting_queue-> size > 0 ||
+	
+	run_count++;
+  } while ((ready_queue->size > 0 || io_1_waiting_queue-> size > 0 ||
           io_2_waiting_queue->size > 0 || created_queue->size > 0 ||
-          current_process->pid != idl->pid);// End main cpu loop
+          current_process->pid != idl->pid) && MAX_LOOPS != run_count );// End main cpu loop
 }
 
 int main(void) {
@@ -604,7 +755,7 @@ int main(void) {
   FIFOq_init(io_2_waiting_queue);
   terminate_queue = FIFOq_construct();
   FIFOq_init(terminate_queue);
-
+  
   // Run a cpu
   char * queue_string;
   cpu();

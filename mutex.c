@@ -12,8 +12,10 @@ Mutex_p Mutex_construct() {
 void Mutex_lock(Mutex_p m, PCB_p p) {
 	if (m->owner == NULL) {
 		m->owner = p;
+		printf("PID %lu: requested lock on mutex %p - succeeded\n",p->pid,&m);
 	} else {
 		FIFOq_enqueue(m->queue, p);
+		printf("PID %lu: requested lock on mutex %p - blocked by PID %lu\n",p->pid,&m,m->owner->pid);
 	}
 }
 
@@ -25,7 +27,7 @@ int Mutex_trylock(Mutex_p m) {
 	}
 }
 
-void Mutex_unlock(Mutex_p m) {
+void Mutex_unlock(Mutex_p m, PRIORITYq_p the_ready_queue) {
 
   if (m->owner == NULL) { // only for debugging
     printf("Unlocked called before any lock\n");
@@ -33,6 +35,9 @@ void Mutex_unlock(Mutex_p m) {
 
   if (m != NULL) {
     m->owner = FIFOq_dequeue(m->queue);
+	if (m->owner != NULL) {
+		PRIORITYq_enqueue(the_ready_queue, m->owner);
+	}
   } else {
     printf("mutex was null in Mutex_unlock\n");
   }
