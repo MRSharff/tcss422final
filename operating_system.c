@@ -3,6 +3,15 @@
 #include "operating_system.h"
 
 #define MAX_LOOPS 100000
+#define FIRST_MUTEX_LOCK_INSTRUCTION 301
+#define WAIT_COND_INSTRUCTION 303
+#define FIRST_MUTEX_UNLOCK_INSTRUCTION 304
+#define INCREMENT_INSTRUCTION 450
+#define PRINT_INSTRUCTION 450
+#define SECOND_MUTEX_LOCK_INSTRUCTION 655
+#define CHANGE_INCREMENT_AVAIL_INSTRUCTION 656
+#define COND_SIGNAL_INSTRUCTION 657
+#define SECOND_MUTEX_UNLOCK_INSTRUCTION 658
 
 // Trackers for amount of processes
 int io_process_count;
@@ -18,10 +27,18 @@ int io_1_downcounter;
 int io_2_downcounter;
 int timer_count;
 
-//Producer increment instruction value
-unsigned long increment_instruction = 450;
-unsigned long print_instruction = 450;
-unsigned long change_increment_avail_instruction = 656;
+//Producer increment instruction value (this is essentially the pseudo program)
+
+const unsigned long first_mutex_lock_instruction = 301; // thread_mutex_lock(mutex[x])
+const unsigned long wait_cond_instruction = 303; // if (increment_avail == 0 (or 1 for consumer)) thread_cond_wait(num_not_incremented (for consumer, num_not_printed), mutex[x])
+const unsigned long first_mutex_unlock_instruction = 304; // thread_mutex_unlock(mutex[x])
+const unsigned long increment_instruction = 450;
+const unsigned long print_instruction = 450;
+const unsigned long second_mutex_lock_instruction = 655;
+const unsigned long change_increment_avail_instruction = 656;
+const unsigned long cond_signal_instruction = 657;
+const unsigned long second_mutex_unlock_instruction = 658;
+
 
 // Producer Consumer Pairs (hard coded 5 pairs)
 PCB_p producer[5];
@@ -33,12 +50,12 @@ Mutex_p mutex[5];
 // analogous to bufavail, 0 to 1
 int increment_avail[5];
 
-// condition variables, like cond_var_type buf_not_full
+// condition variables
+//like cond_var_type buf_not_full, used by producer
 cond_var_p num_not_incremented[5];
 
-// like cond_var_type buf_not_empty
+// like cond_var_type buf_not_empty, used by consumer
 cond_var_p num_not_printed[5];
-
 
 // pointed to by global variable in pcb
 int prod_cons_shared_var[5];
@@ -121,55 +138,72 @@ int create_producer_consumer_pairs() {
   unsigned int pair_max_pc = 1000;
   for (i = 0; i < 5; i++) { // 5 pairs
     var_val = 300;
-	producer[i] = PCB_construct();
-	consumer[i] = PCB_construct();
-	PCB_init(producer[i]);
-	PCB_init(consumer[i]);
-	producer[i]->priority = 1;
-	consumer[i]->priority = 1;
-	producer[i]->role = 2;
-	consumer[i]->role = 1;
-	
-	increment_avail[i] = 1;
-	
-	mutex[i] = Mutex_construct();
-	
-	PCB_set_pid(producer[i], pid_counter);
-    pid_counter++;
-	PCB_set_pid(consumer[i], pid_counter);
-    pid_counter++;
-	
-	prod_cons_shared_var[i]=0;
-	producer[i]->global_variable = &prod_cons_shared_var[i];
-	consumer[i]->global_variable = &prod_cons_shared_var[i];
-	producer[i]->max_pc = pair_max_pc;
-	consumer[i]->max_pc = pair_max_pc;
-	
-    producer[i]->try_lock_trap[0] = var_val; // 300
-    consumer[i]->try_lock_trap[0] = var_val; // 300
-    var_val+= 1;
-    producer[i]->lock_trap[0] = var_val; // 301
-    consumer[i]->lock_trap[0] = var_val; // 301
-    var_val+= 2;
-    producer[i]->wait_cond[0] = var_val; // 303
-    consumer[i]->wait_cond[0] = var_val; // 303
-    var_val+= 1;
-    producer[i]->unlock_mutex[0] = var_val; // 304
-    consumer[i]->unlock_mutex[0] = var_val; // 304
-    var_val+= 350;
-    producer[i]->try_lock_trap[1] = var_val; // 654
-    consumer[i]->try_lock_trap[1] = var_val; // 654
-    var_val+= 1;
-    producer[i]->lock_trap[0] = var_val; // 655
-    consumer[i]->lock_trap[0] = var_val; // 655
-    var_val+= 2; // changing increment_avail happens at 656
-    producer[i]->sign_cond[1] = var_val; // 657
-    consumer[i]->sign_cond[1] = var_val; // 657
-    var_val+= 1;
-    producer[i]->unlock_mutex[1] = var_val; // 658
-    consumer[i]->unlock_mutex[1] = var_val; // 658
-	PRIORITYq_enqueue(ready_queue,producer[i]);
-	PRIORITYq_enqueue(ready_queue,consumer[i]);
+  	producer[i] = PCB_construct();
+  	consumer[i] = PCB_construct();
+  	PCB_init(producer[i]);
+  	PCB_init(consumer[i]);
+  	producer[i]->priority = 1;
+  	consumer[i]->priority = 1;
+  	producer[i]->role = PRODUCER;
+  	consumer[i]->role = CONSUMER;
+
+  	increment_avail[i] = 1;
+
+  	mutex[i] = Mutex_construct();
+
+  	PCB_set_pid(producer[i], pid_counter);
+      pid_counter++;
+  	PCB_set_pid(consumer[i], pid_counter);
+      pid_counter++;
+
+  	prod_cons_shared_var[i]=0;
+  	producer[i]->global_variable = &prod_cons_shared_var[i];
+  	consumer[i]->global_variable = &prod_cons_shared_var[i];
+  	producer[i]->max_pc = pair_max_pc;
+  	consumer[i]->max_pc = pair_max_pc;
+
+    producer[i]->try_lock_trap[0] = 300; // 300
+    consumer[i]->try_lock_trap[0] = 300; // 300
+    producer[i]->lock_trap[0] = first_mutex_lock_instruction; // 301
+    consumer[i]->lock_trap[0] = first_mutex_lock_instruction; // 301
+    producer[i]->wait_cond[0] = wait_cond_instruction; // 303
+    consumer[i]->wait_cond[0] = wait_cond_instruction; // 303
+    producer[i]->unlock_mutex[0] = first_mutex_unlock_instruction; // 304
+    consumer[i]->unlock_mutex[0] = first_mutex_unlock_instruction; // 304
+    producer[i]->try_lock_trap[1] = 654; // 654
+    consumer[i]->try_lock_trap[1] = 654; // 654
+    producer[i]->lock_trap[1] = second_mutex_lock_instruction; // 655
+    consumer[i]->lock_trap[1] = second_mutex_lock_instruction; // 655
+    producer[i]->sign_cond[1] = cond_signal_instruction; // 657
+    consumer[i]->sign_cond[1] = cond_signal_instruction; // 657
+    producer[i]->unlock_mutex[1] = second_mutex_unlock_instruction; // 658
+    consumer[i]->unlock_mutex[1] = second_mutex_unlock_instruction; // 658
+
+      // producer[i]->try_lock_trap[0] = var_val; // 300
+      // consumer[i]->try_lock_trap[0] = var_val; // 300
+      // var_val+= 1;
+      // producer[i]->lock_trap[0] = var_val; // 301
+      // consumer[i]->lock_trap[0] = var_val; // 301
+      // var_val+= 2;
+      // producer[i]->wait_cond[0] = var_val; // 303
+      // consumer[i]->wait_cond[0] = var_val; // 303
+      // var_val+= 1;
+      // producer[i]->unlock_mutex[0] = var_val; // 304
+      // consumer[i]->unlock_mutex[0] = var_val; // 304
+      // var_val+= 350;
+      // producer[i]->try_lock_trap[1] = var_val; // 654
+      // consumer[i]->try_lock_trap[1] = var_val; // 654
+      // var_val+= 1;
+      // producer[i]->lock_trap[0] = var_val; // 655
+      // consumer[i]->lock_trap[0] = var_val; // 655
+      // var_val+= 2; // changing increment_avail happens at 656
+      // producer[i]->sign_cond[1] = var_val; // 657
+      // consumer[i]->sign_cond[1] = var_val; // 657
+      // var_val+= 1;
+      // producer[i]->unlock_mutex[1] = var_val; // 658
+      // consumer[i]->unlock_mutex[1] = var_val; // 658
+  	PRIORITYq_enqueue(ready_queue, producer[i]);
+  	PRIORITYq_enqueue(ready_queue, consumer[i]);
   }
 }
 
@@ -459,13 +493,36 @@ int pseudo_isr(enum interrupt_type int_type) { //, unsigned long * cpu_pc_regist
   return NULL_POINTER;
 }
 
+int get_producer_process_index(PCB_p the_pcb) {
+  int i;
+  for (i = 0; i < 5; i++) { // this is how we find out which variable to increment
+    if (current_process->pid == producer[i]->pid) {
+      return i;
+    }
+  }
+  printf("Process not a producer or consumer. This should never happen\n"); // we should get a segfault from this error
+  return -1;
+}
+
+int get_consumer_process_index(PCB_p the_pcb) {
+  int i;
+  for (i = 0; i < 5; i++) { // this is how we find out which variable to increment
+    if (current_process->pid == consumer[i]->pid) {
+      return i;
+    }
+  }
+  printf("Process not a producer or consumer. This should never happen\n"); // we should get a segfault from this error
+  return -1;
+}
+
 void cpu(void) {
 
-
+  unsigned int * the_pointer; // used to increment the global variable
   int i, run_count;
   int random_pc_increment;
   int error_check;
   int rand_num_of_processes;
+  int process_index;
 
   int is_timer_interrupt;
   int is_io_request_interrupt;
@@ -474,10 +531,12 @@ void cpu(void) {
   int is_terminate_state;
   pc_register = 0;
 
-      // Final Project Create processes section
-    //*************************************************************************
+  // Final Project Create processes section
+  //*************************************************************************
 	create_producer_consumer_pairs();
-	
+  //*************************************************************************
+  // End final project Create processes section
+
   // main cpu loop
   // for (run_count = 0; run_count < RUN_TIME; run_count++) {
   do {
@@ -515,154 +574,148 @@ void cpu(void) {
 
 
 
-
-    //*************************************************************************
-    // End final project Create processes section
-
-
-
     // Simulate running of current process (Execute instruction)
     pc_register++;
 
+    //TODO: refactoring of process pseudo program
 
-    // TODO:If the producer or consumer is a certain pc, do the incrementing or printing
-    if (current_process->role == 2 && pc_register == increment_instruction) { //current process role is that of a producer, increment it's global variable
-      unsigned int * the_pointer = current_process->global_variable;
-      (*the_pointer)++;
-    } else if (current_process->role == 1 && pc_register == print_instruction) { // current process is a consumer, print the value
-      unsigned int * the_pointer = current_process->global_variable;
-      printf("PID: %lu, sequence: %d\n", current_process->pid, (*the_pointer));
-    } else if (current_process->role == 2 && pc_register == change_increment_avail_instruction) {
-      for (int c = 0; c < 5; c++) { // this is how we find out which variable to increment
-        if (current_process->pid == producer[c]->pid) {
-          increment_avail[c]--;
-        }
+    if (current_process->role == PRODUCER) {
+      process_index = get_producer_process_index(current_process);
+      switch (pc_register) { // producer only instructions
+        case FIRST_MUTEX_LOCK_INSTRUCTION:
+          Mutex_lock(mutex[process_index], current_process);
+          break;
+        case FIRST_MUTEX_UNLOCK_INSTRUCTION:
+          Mutex_unlock(mutex[process_index], ready_queue);
+          break;
+        case SECOND_MUTEX_LOCK_INSTRUCTION:
+          Mutex_lock(mutex[process_index], current_process);
+          break;
+        case SECOND_MUTEX_UNLOCK_INSTRUCTION:
+          Mutex_unlock(mutex[process_index], ready_queue);
+          break;
+        case WAIT_COND_INSTRUCTION:
+          if (increment_avail[process_index] == 0) {
+            cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+          }
+          break;
+        case INCREMENT_INSTRUCTION:
+          the_pointer = current_process->global_variable;
+          (*the_pointer)++;
+          break;
+        case COND_SIGNAL_INSTRUCTION:
+          printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
+          cond_signal(num_not_printed[process_index]);
+          break;
+        case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
+          increment_avail[process_index]--;
+          break;
+        default:
+          break;
       }
-    } else if (current_process->role == 1 && pc_register == change_increment_avail_instruction) {
-      for (int c = 0; c < 5; c++) { // this is how we find out which variable to increment
-        if (current_process->pid == consumer[c]->pid) {
-          increment_avail[c]++;
-        }
-      }
-    } else if (current_process->role == 2 && pc_register == 301) { // 2 is producer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				Mutex_lock(mutex[c], current_process);
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 301) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				Mutex_lock(mutex[c], current_process);
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 303) { // 2 is producer, if check
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				if (increment_avail[c] == 0) {
-					cond_wait(num_not_incremented[c], mutex[c], ready_queue);
-				}
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				if (increment_avail[c] == 1) {
-					cond_wait(num_not_printed[c], mutex[c], ready_queue);
-				}
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 304) { // 2 is producer, if check
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				Mutex_unlock(mutex[c], ready_queue);
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 304) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				Mutex_unlock(mutex[c], ready_queue);
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 655) { // 2 is producer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				Mutex_lock(mutex[c], current_process);
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 655) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				Mutex_lock(mutex[c], current_process);
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 656) { // 2 is producer, if check
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				increment_avail[c]--;
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				increment_avail[c]++;
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 303) { // 2 is producer, if check
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				if (increment_avail[c] == 0) {
-					printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[c]);
-					cond_signal(num_not_printed[c]);
-				}
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 303) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				if (increment_avail[c] == 0) {
-					printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[c]);
-					cond_signal(num_not_incremented[c]);
-				}
-				break;
-			}
-		}
-	} else if (current_process->role == 2 && pc_register == 304) { // 2 is producer, if check
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == producer[c]->pid) {
-				Mutex_unlock(mutex[c], ready_queue);
-				break;
-			}
-		}
-	} else if (current_process->role == 1 && pc_register == 304) { // 1 is consumer
-		for (int c = 0; c < 5; c++) {
-			if (current_process->pid == consumer[c]->pid) {
-				Mutex_unlock(mutex[c], ready_queue);
-				break;
-			}
-		}
-	} 
-	
-	//Check lock
+    }
 
-	//Check Try lock
-	
-	//Check unlock
-	
-	//Check cond_wait
-	
-	//Check cond_signal
+    if (current_process->role == CONSUMER) {
+      process_index = get_consumer_process_index(current_process);
+      switch (pc_register) { // consumer only instructions
+        case FIRST_MUTEX_LOCK_INSTRUCTION:
+          Mutex_lock(mutex[process_index], current_process);
+          break;
+        case FIRST_MUTEX_UNLOCK_INSTRUCTION:
+          Mutex_unlock(mutex[process_index], ready_queue);
+          break;
+        case SECOND_MUTEX_LOCK_INSTRUCTION:
+          Mutex_lock(mutex[process_index], current_process);
+          break;
+        case SECOND_MUTEX_UNLOCK_INSTRUCTION:
+          Mutex_unlock(mutex[process_index], ready_queue);
+          break;
+        case WAIT_COND_INSTRUCTION:
+          if (increment_avail[process_index] == 1) {
+            cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+          }
+          break;
+        case PRINT_INSTRUCTION:
+          the_pointer = current_process->global_variable;
+          printf("PID: %lu, sequence: %d\n", current_process->pid, (*the_pointer));
+          break;
+        case COND_SIGNAL_INSTRUCTION:
+          printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
+          cond_signal(num_not_printed[process_index]);
+          break;
+        case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
+          increment_avail[process_index]++;
+          break;
+        default:
+          break;
+      }
+    }
+
+
+    // if (current_process->role == PRODUCER || current_process->role == CONSUMER) { // all the producer instructions
+    //   process_index = get_producer_process_index(current_process);
+    //   switch (pc_register) { // common instructions
+    //     case FIRST_MUTEX_LOCK_INSTRUCTION:
+    //       Mutex_lock(mutex[process_index], current_process);
+    //       break;
+    //     case FIRST_MUTEX_UNLOCK_INSTRUCTION:
+    //       Mutex_unlock(mutex[process_index], ready_queue);
+    //       break;
+    //     case SECOND_MUTEX_LOCK_INSTRUCTION:
+    //       Mutex_lock(mutex[process_index], current_process);
+    //       break;
+    //     case SECOND_MUTEX_UNLOCK_INSTRUCTION:
+    //       Mutex_unlock(mutex[process_index], ready_queue);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    //
+    //   if (current_process->role == PRODUCER) {
+    //     switch (pc_register) { // producer only instructions
+    //       case WAIT_COND_INSTRUCTION:
+    //         if (increment_avail[process_index] == 0) {
+    //           cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+    //         }
+    //         break;
+    //       case INCREMENT_INSTRUCTION:
+    //         the_pointer = current_process->global_variable;
+    //         (*the_pointer)++;
+    //         break;
+    //       case COND_SIGNAL_INSTRUCTION:
+    //         printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
+    //         cond_signal(num_not_printed[process_index]);
+    //         break;
+    //       case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
+    //         increment_avail[process_index]--;
+    //         break;
+    //       default:
+    //         break;
+    //     }
+    //   } else { // it's a consumer
+    //     switch (pc_register) { // consumer only instructions
+    //       case WAIT_COND_INSTRUCTION:
+    //         if (increment_avail[process_index] == 1) {
+    //           cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+    //         }
+    //         break;
+    //       case PRINT_INSTRUCTION:
+    //         the_pointer = current_process->global_variable;
+    //         printf("PID: %lu, sequence: %d\n", current_process->pid, (*the_pointer));
+    //         break;
+    //       case COND_SIGNAL_INSTRUCTION:
+    //         printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
+    //         cond_signal(num_not_printed[process_index]);
+    //         break;
+    //       case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
+    //         increment_avail[process_index]++;
+    //         break;
+    //       default:
+    //         break;
+    //     }
+    //   }
+
+    // }
 
 
     // Check if process should be terminated
@@ -714,8 +767,8 @@ void cpu(void) {
         printf("Unknown error\n");
         break;
     }
-	
-	run_count++;
+
+	  run_count++;
   } while ((ready_queue->size > 0 || io_1_waiting_queue-> size > 0 ||
           io_2_waiting_queue->size > 0 || created_queue->size > 0 ||
           current_process->pid != idl->pid) && MAX_LOOPS != run_count );// End main cpu loop
@@ -755,7 +808,7 @@ int main(void) {
   FIFOq_init(io_2_waiting_queue);
   terminate_queue = FIFOq_construct();
   FIFOq_init(terminate_queue);
-  
+
   // Run a cpu
   char * queue_string;
   cpu();
@@ -779,7 +832,7 @@ int main(void) {
 
   if (current_process != NULL) {
     if (current_process->pid != idl->pid) {
-      printf("should never happen, idle process should always be the last thing running********\n");
+      printf("should never happen if all processes are set to terminate,\n idle process should always be the last thing running********\n");
       PCB_destruct(current_process);
     }
   }

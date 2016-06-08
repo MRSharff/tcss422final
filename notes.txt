@@ -1,0 +1,9 @@
+Notes
+
+we can do if statements in the pseudo program by doing
+
+if (condition) {
+  // let pc register go to next instruction which would be the instruction in this if statement
+} else {
+// otherwise, increment pc_register so it will skip the instruction inside the if statment
+}

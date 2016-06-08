@@ -27,14 +27,19 @@ void cond_wait(cond_var_p condition_name, Mutex_p the_mutex, PRIORITYq_p the_rea
 }
 
 PCB_p cond_signal(cond_var_p condition_name){
-	PCB_p temp_pcb = condition_name->thread;
-	Mutex_p temp_mutex = condition_name->mutex;
-	FIFOq_enqueue(condition_name->mutex->queue,condition_name->thread);
-	cond_var_p temp = condition_name;
-	condition_name = condition_name->next;
-	Mutex_lock(temp_mutex,temp_pcb);
-	cond_var_p_destruct(temp);
-	return temp_pcb;
+  if (condition_name != NULL) {
+    PCB_p temp_pcb = condition_name->thread;
+  	Mutex_p temp_mutex = condition_name->mutex;
+  	FIFOq_enqueue(condition_name->mutex->queue,condition_name->thread);
+  	cond_var_p temp = condition_name;
+  	condition_name = condition_name->next;
+  	Mutex_lock(temp_mutex,temp_pcb);
+  	cond_var_p_destruct(temp);
+  	return temp_pcb;
+  }
+  print_error(NULL_POINTER);
+  printf("in cond_signal, condition_name was null")
+  return NULL;
 }
 
 void cond_var_p_destruct(cond_var_p condition){

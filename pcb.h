@@ -5,12 +5,18 @@
 #ifndef PCB_H_
 #define PCB_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "errors.h"
+
 /* Default values */
 #define DEFAULT_PID 0
 #define DEFAULT_STATE 0
 #define DEFAULT_PRIORITY 0
 #define DEFAULT_PC 0
 #define TRAP_SIZE 4
+
 
 // /** Exit Codes */
 // #define OK 0
@@ -19,14 +25,11 @@
 
 /* Type of PCB*/
 #define NORMAL_PCB 0
-#define CONSUMER 1
-#define PRODUCER 2
+#define PRODUCER 1
+#define CONSUMER 2
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "errors.h"
+
 
 typedef enum state_type {
   new, ready, running, interrupted, waiting, halted, terminated
@@ -48,7 +51,7 @@ typedef struct pcb {
   int io_2_[TRAP_SIZE];
 
   // New for final project
-  unsigned int role; // Type of pcb: 0: normal, 1: consumer or  2: producer.
+  unsigned int role; // Type of pcb: 0: normal, 1: producer, 2: consumer
   unsigned long try_lock_trap[TRAP_SIZE];
   unsigned long lock_trap[TRAP_SIZE];
   unsigned long unlock_mutex[TRAP_SIZE];
