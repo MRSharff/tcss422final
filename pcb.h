@@ -27,6 +27,7 @@
 #define NORMAL_PCB 0
 #define PRODUCER 1
 #define CONSUMER 2
+#define MUTUAL_RESOURCE_USER 3
 
 
 

@@ -1,0 +1,6 @@
+Performance Report *********************
+
+With proper deadlock prevention, there were no deadlocks.
+
+Starvation Prevention **********************
+Our starvation prevention algorithm uses a mod of 4 to move PCBs from lower priorities to higher ones. We go through each priority queue and boost them if they haven't been dequeued in a while.

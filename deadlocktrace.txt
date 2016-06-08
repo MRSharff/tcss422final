@@ -1,0 +1,2095 @@
+Creating 1 processes
+Process PID: 37 io arrays:
+io1[0]: 100, io2[0]: 261
+io1[1]: 412, io2[1]: 557
+io1[2]: 753, io2[2]: 757
+io1[3]: 903, io2[3]: 1059
+No deadlocks were detected
+Creating 2 processes
+Process PID: 38 io arrays:
+io1[0]: 163, io2[0]: 257
+io1[1]: 323, io2[1]: 520
+io1[2]: 669, io2[2]: 852
+io1[3]: 995, io2[3]: 1116
+Process PID: 39 io arrays:
+io1[0]: 6, io2[0]: 169
+io1[1]: 228, io2[1]: 349
+io1[2]: 504, io2[2]: 606
+io1[3]: 771, io2[3]: 848
+Creating 5 processes
+Process PID: 40 io arrays:
+io1[0]: 123, io2[0]: 190
+io1[1]: 289, io2[1]: 408
+io1[2]: 456, io2[2]: 501
+io1[3]: 576, io2[3]: 693
+Process PID: 41 io arrays:
+io1[0]: 81, io2[0]: 265
+io1[1]: 323, io2[1]: 378
+io1[2]: 489, io2[2]: 507
+io1[3]: 681, io2[3]: 713
+Process PID: 42 io arrays:
+io1[0]: 14, io2[0]: 53
+io1[1]: 180, io2[1]: 315
+io1[2]: 485, io2[2]: 492
+io1[3]: 592, io2[3]: 640
+Process PID: 43 io arrays:
+io1[0]: 1, io2[0]: 92
+io1[1]: 129, io2[1]: 228
+io1[2]: 414, io2[2]: 498
+io1[3]: 618, io2[3]: 679
+Process PID: 44 io arrays:
+io1[0]: 53, io2[0]: 111
+io1[1]: 283, io2[1]: 370
+io1[2]: 482, io2[2]: 542
+io1[3]: 647, io2[3]: 733
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x27, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x2A, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x2B, State: Ready, Priority: 0x0, PC: 0x0
+Process enqueued: PID: 0x2C, State: Ready, Priority: 0x0, PC: 0x0
+timer interrupt
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x12C
+
+
+Currently Running PCB: PID: 0xF, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x10, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=33: P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15-* : contents: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=11: P1->P2->P3->P4->P5->P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x12C
+
+
+Currently Running PCB: PID: 0x13, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x14, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=34: P21->P22->P23->P24->P25->P26->P27->P28->P29->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19-* : contents: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=10: P2->P3->P4->P5->P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x12C
+
+
+Currently Running PCB: PID: 0x17, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x18, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=35: P25->P26->P27->P28->P29->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23-* : contents: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=9: P3->P4->P5->P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=36: P29->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27-* : contents: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=8: P4->P5->P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=37: P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31-* : contents: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=7: P5->P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x12C
+
+
+Currently Running PCB: PID: 0x23, State: Running, Priority: 0x0, PC: 0x0
+timer interrupt
+Switching to: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x24, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x12C
+Ready Queue: Q0:Count=38: P37->P38->P39->P40->P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35-* : contents: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x12C
+Q1:Count=6: P6->P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x12C
+Current PCB: pid#37, io 1
+io 1 request
+No deadlocks were detected
+Current PCB: pid#38, io 1
+io 1 request
+Current PCB: pid#39, io 1
+
+
+Currently Running PCB: PID: 0x27, State: Running, Priority: 0x0, PC: 0x0
+io 1 request
+Switching to: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x28, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x27, State: Waiting, Priority: 0x0, PC: 0x6
+Ready Queue: Q0:Count=36: P41->P42->P43->P44->P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6-* : contents: PID: 0x6, State: New, Priority: 0x1, PC: 0x0
+Q1:Count=5: P7->P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+Current PCB: pid#40, io 1
+io 1 request
+Current PCB: pid#41, io 1
+io 1 request
+Current PCB: pid#42, io 1
+io 1 request
+Current PCB: pid#43, io 1
+
+
+Currently Running PCB: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x0
+io 1 request
+Switching to: PID: 0x2C, State: Ready, Priority: 0x0, PC: 0x0
+Now running: PID: 0x2C, State: Running, Priority: 0x0, PC: 0x0
+Returned to Ready Queue: PID: 0x2B, State: Waiting, Priority: 0x0, PC: 0x1
+Ready Queue: Q0:Count=33: P12->P13->P14->P0->P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7-* : contents: PID: 0x7, State: New, Priority: 0x1, PC: 0x0
+Q1:Count=4: P8->P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+Current PCB: pid#44, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x258
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0xE, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x0, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0x0, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=33: P15->P16->P17->P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14-* : contents: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=3: P9->P10->P11-* : contents: PID: 0xB, State: New, Priority: 0x1, PC: 0x0
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x258
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x10, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x11, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=34: P18->P1->P19->P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9-* : contents: PID: 0x9, State: New, Priority: 0x1, PC: 0x0
+Q1:Count=3: P10->P11->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x258
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x1, State: Running, Priority: 0x1, PC: 0x0
+timer interrupt
+Switching to: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x13, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x12C
+Ready Queue: Q0:Count=34: P20->P21->P22->P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18-* : contents: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=4: P10->P11->P0->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x258
+
+
+Currently Running PCB: PID: 0x15, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x16, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=36: P2->P23->P24->P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21-* : contents: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=3: P11->P0->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x258
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+Currently Running PCB: PID: 0x17, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x18, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=37: P25->P26->P3->P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23-* : contents: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=3: P0->P1->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x258
+io 1 completion
+
+
+Currently Running PCB: PID: 0x1A, State: Running, Priority: 0x0, PC: 0x1D0
+timer interrupt
+Switching to: PID: 0x3, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0x3, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=39: P27->P28->P29->P30->P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x12C
+Q1:Count=2: P1->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x258
+
+
+Currently Running PCB: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x1E, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=39: P4->P31->P32->P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x12C
+Q1:Count=2: P2->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+Currently Running PCB: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x12C
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x12C
+Returned to Ready Queue: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=39: P33->P34->P5->P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31-* : contents: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=3: P2->P3->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x258
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x258
+
+
+Currently Running PCB: PID: 0x22, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x5, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0x5, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=41: P35->P36->P6->P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34-* : contents: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=2: P3->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+io 1 completion
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x258
+
+
+Currently Running PCB: PID: 0x24, State: Running, Priority: 0x0, PC: 0x12C
+timer interrupt
+Switching to: PID: 0x6, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0x6, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x258
+Ready Queue: Q0:Count=42: P7->P12->P13->P8->P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36-* : contents: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x258
+Q1:Count=2: P4->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+timer interrupt
+Process enqueued: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x384
+
+
+Currently Running PCB: PID: 0xD, State: Running, Priority: 0x0, PC: 0x258
+timer interrupt
+Switching to: PID: 0x8, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0x8, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=41: P14->P37->P15->P16->P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13-* : contents: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=3: P5->P6->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x12C
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x384
+Current PCB: pid#37, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0xF, State: Running, Priority: 0x0, PC: 0x258
+timer interrupt
+Switching to: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x10, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=40: P9->P38->P17->P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15-* : contents: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=3: P6->P7->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x384
+timer interrupt
+Process enqueued: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x12C
+Current PCB: pid#38, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x11, State: Running, Priority: 0x0, PC: 0x258
+io 2 completion
+Switching to: PID: 0x11, State: Interrupted, Priority: 0x0, PC: 0x327
+Now running: PID: 0x11, State: Running, Priority: 0x0, PC: 0x327
+Returned to Ready Queue: PID: 0x11, State: Running, Priority: 0x0, PC: 0x327
+Ready Queue: Q0:Count=40: P18->P39->P19->P10->P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37-* : contents: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x105
+Q1:Count=3: P7->P8->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x384
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x384
+Current PCB: pid#39, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x13, State: Running, Priority: 0x0, PC: 0x258
+timer interrupt
+Switching to: PID: 0xA, State: New, Priority: 0x1, PC: 0x0
+Now running: PID: 0xA, State: Running, Priority: 0x1, PC: 0x0
+Returned to Ready Queue: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=40: P20->P21->P22->P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x12C
+Q1:Count=2: P8->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+PID 10: requested lock on mutex 0x7ffd4ea85798 - succeeded
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x12C
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x384
+
+
+Currently Running PCB: PID: 0x15, State: Running, Priority: 0x0, PC: 0x258
+timer interrupt
+Switching to: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x16, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=40: P40->P11->P23->P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21-* : contents: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=3: P8->P9->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x384
+Current PCB: pid#40, io 2
+io 2 request
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 10
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0xB, State: Running, Priority: 0x1, PC: 0x0
+timer interrupt
+Switching to: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x17, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x12C
+Ready Queue: Q0:Count=40: P24->P25->P41->P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x12C
+Q1:Count=3: P9->P10->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x384
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x384
+io 2 completion
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x19, State: Running, Priority: 0x0, PC: 0x259
+timer interrupt
+Switching to: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x51
+Now running: PID: 0x29, State: Running, Priority: 0x0, PC: 0x51
+Returned to Ready Queue: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=42: P26->P0->P27->P28->P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25-* : contents: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=2: P10->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x12C
+
+
+Current PCB: pid#41, io 2
+io 2 request
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x384
+PID 0: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x258
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x258
+timer interrupt
+Switching to: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=41: P29->P1->P42->P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27-* : contents: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=2: P11->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x384
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x384
+PID 1: requested lock on mutex 0x7ffd4ea85798 - succeeded
+io 2 completion
+PID 1 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+
+
+Currently Running PCB: PID: 0x1, State: Running, Priority: 0x1, PC: 0x12D
+Switching to: PID: 0x2A, State: Ready, Priority: 0x0, PC: 0xE
+Now running: PID: 0x2A, State: Running, Priority: 0x0, PC: 0xE
+Returned to Ready Queue: Null
+Ready Queue: Q0:Count=42: P30->P31->P43->P32->P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x12C
+Q1:Count=1: P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x258
+
+
+Current PCB: pid#42, io 2
+io 2 request
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x384
+timer interrupt
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x384
+Current PCB: pid#43, io 2
+
+
+Currently Running PCB: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x1
+io 2 request
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0x2B, State: Waiting, Priority: 0x0, PC: 0x5C
+Ready Queue: Q0:Count=41: P2->P33->P34->P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x384
+PID 2: requested lock on mutex 0x7ffd4ea85798 - succeeded
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x258
+io 2 completion
+
+
+Currently Running PCB: PID: 0x21, State: Running, Priority: 0x0, PC: 0x32A
+timer interrupt
+Switching to: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x22, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x384
+Ready Queue: Q0:Count=41: P44->P35->P3->P36->P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33-* : contents: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x384
+Q1:Count=1: P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x384
+Current PCB: pid#44, io 2
+io 2 request
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x384
+PID 3: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 3 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+
+
+Currently Running PCB: PID: 0x3, State: Running, Priority: 0x1, PC: 0x12C
+Switching to: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x258
+Now running: PID: 0x24, State: Running, Priority: 0x0, PC: 0x258
+Returned to Ready Queue: Null
+Ready Queue: Q0:Count=40: P12->P4->P13->P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35-* : contents: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x384
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x382
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 4: requested lock on mutex 0x7ffd4ea85798 - succeeded
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x4, State: Running, Priority: 0x1, PC: 0x12C
+timer interrupt
+Switching to: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0xD, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x258
+Ready Queue: Q0:Count=40: P14->P5->P15->P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12-* : contents: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x4B0
+Q1:Count=1: P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x4B0
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 5: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 5 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+
+
+Currently Running PCB: PID: 0x5, State: Running, Priority: 0x1, PC: 0x12C
+Switching to: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0xF, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: Null
+Ready Queue: Q0:Count=41: P16->P6->P37->P17->P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x4AE
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 6: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x258
+Current PCB: pid#37, io 1
+
+
+Currently Running PCB: PID: 0x25, State: Running, Priority: 0x0, PC: 0x105
+io 1 request
+Switching to: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0x11, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x25, State: Waiting, Priority: 0x0, PC: 0x19C
+Ready Queue: Q0:Count=40: P18->P19->P7->P38->P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x4B0
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 7: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 7 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+
+
+Currently Running PCB: PID: 0x7, State: Running, Priority: 0x1, PC: 0x12C
+Switching to: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x101
+Now running: PID: 0x26, State: Running, Priority: 0x0, PC: 0x101
+Returned to Ready Queue: Null
+Ready Queue: Q0:Count=39: P20->P21->P39->P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19-* : contents: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x4B0
+
+
+Current PCB: pid#38, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x4B0
+No deadlocks were detected
+io 1 completion
+
+
+Currently Running PCB: PID: 0x15, State: Running, Priority: 0x0, PC: 0x46D
+timer interrupt
+Switching to: PID: 0x27, State: Ready, Priority: 0x0, PC: 0xA9
+Now running: PID: 0x27, State: Running, Priority: 0x0, PC: 0xA9
+Returned to Ready Queue: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x4B0
+Ready Queue: Q0:Count=39: P22->P8->P23->P24->P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21-* : contents: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x4B0
+
+
+Current PCB: pid#39, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 8: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x258
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x17, State: Running, Priority: 0x0, PC: 0x384
+timer interrupt
+Switching to: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0x18, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x4B0
+Ready Queue: Q0:Count=38: P9->P40->P25->P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x258
+
+
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 9: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 9 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+Current PCB: pid#40, io 1
+io 1 request
+
+
+Currently Running PCB: PID: 0x19, State: Running, Priority: 0x0, PC: 0x384
+io 1 completion
+Switching to: PID: 0x19, State: Interrupted, Priority: 0x0, PC: 0x3CE
+Now running: PID: 0x19, State: Running, Priority: 0x0, PC: 0x3CE
+Returned to Ready Queue: PID: 0x19, State: Running, Priority: 0x0, PC: 0x3CE
+Ready Queue: Q0:Count=37: P26->P10->P27->P28->P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38-* : contents: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x143
+
+
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x4B0
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 10: requested lock on mutex 0x7ffd4ea85798 - succeeded
+Both resources are used
+timer interrupt
+Process enqueued: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x258
+
+
+Currently Running PCB: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x384
+timer interrupt
+Switching to: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x4B0
+Ready Queue: Q0:Count=36: P29->P41->P11->P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27-* : contents: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x4B0
+Q1:Count=1: P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x258
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x4B0
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x4B0
+Current PCB: pid#41, io 1
+
+
+Currently Running PCB: PID: 0x29, State: Running, Priority: 0x0, PC: 0x109
+io 1 request
+Switching to: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x12C
+Now running: PID: 0xB, State: Running, Priority: 0x1, PC: 0x12C
+Returned to Ready Queue: PID: 0x29, State: Waiting, Priority: 0x0, PC: 0x143
+Ready Queue: Q0:Count=37: P30->P31->P0->P32->P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29-* : contents: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x4B0
+
+
+Both resources are used
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 10
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x258
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 0: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 0 sent signal on condition 0x606300
+PID 1: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 0
+
+
+Currently Running PCB: PID: 0x0, State: Running, Priority: 0x1, PC: 0x258
+timer interrupt
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x384
+Ready Queue: Q0:Count=36: P42->P33->P34->P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31-* : contents: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x4B0
+Q1:Count=3: P1->P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x384
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x4B0
+deadlock detected for processes PID10 and PID12
+Current PCB: pid#42, io 1
+io 1 request
+
+
+Currently Running PCB: PID: 0x21, State: Running, Priority: 0x0, PC: 0x384
+timer interrupt
+Switching to: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x384
+Now running: PID: 0x22, State: Running, Priority: 0x0, PC: 0x384
+Returned to Ready Queue: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x4B0
+Ready Queue: Q0:Count=37: P2->P35->P43->P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33-* : contents: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x4B0
+Q1:Count=2: P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x384
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x4B0
+PID 2: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 2 sent signal on condition 0x606304
+PID 3: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 2
+timer interrupt
+Process enqueued: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x384
+deadlock detected for processes PID10 and PID12
+
+
+Currently Running PCB: PID: 0x23, State: Running, Priority: 0x0, PC: 0x384
+timer interrupt
+Switching to: PID: 0x2B, State: Ready, Priority: 0x0, PC: 0x5C
+Now running: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x5C
+Returned to Ready Queue: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x4B0
+Ready Queue: Q0:Count=38: P36->P12->P13->P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x12F
+Q1:Count=4: P0->P3->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x384
+
+
+Current PCB: pid#43, io 1
+io 1 request
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x4AE
+
+
+Currently Running PCB: PID: 0xC, State: Running, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Switching to: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0xD, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=38: P44->P14->P4->P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12-* : contents: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=4: P0->P3->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x384
+
+
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x5DC
+Current PCB: pid#44, io 1
+io 1 request
+io 1 completion
+
+
+Currently Running PCB: PID: 0xE, State: Running, Priority: 0x0, PC: 0x5CD
+timer interrupt
+Switching to: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x258
+Now running: PID: 0x4, State: Running, Priority: 0x1, PC: 0x258
+Returned to Ready Queue: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=39: P15->P16->P6->P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14-* : contents: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=3: P3->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x384
+
+
+PID 4: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 4 sent signal on condition 0x606308
+PID 5: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 4
+timer interrupt
+Process enqueued: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x384
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x5DA
+io 1 completion
+
+
+Currently Running PCB: PID: 0x10, State: Running, Priority: 0x0, PC: 0x5CE
+timer interrupt
+Switching to: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x258
+Now running: PID: 0x6, State: Running, Priority: 0x1, PC: 0x258
+Returned to Ready Queue: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=40: P17->P18->P19->P20->P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16-* : contents: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=5: P3->P2->P5->P5->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x384
+
+
+PID 6: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 6 sent signal on condition 0x60630c
+PID 7: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 6
+timer interrupt
+Process enqueued: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x384
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x5DC
+
+
+Currently Running PCB: PID: 0x13, State: Running, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Switching to: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0x14, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=40: P37->P21->P22->P23->P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19-* : contents: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=7: P2->P5->P5->P4->P7->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x384
+
+
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x5DC
+Current PCB: pid#37, io 2
+io 2 request
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x5DC
+
+
+Currently Running PCB: PID: 0x16, State: Running, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Switching to: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0x17, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=40: P8->P24->P38->P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22-* : contents: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=6: P5->P5->P4->P7->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x384
+
+
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x5DC
+PID 8: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 8 sent signal on condition 0x606310
+PID 9: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 8
+timer interrupt
+Process enqueued: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x384
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x5DC
+
+
+Currently Running PCB: PID: 0x26, State: Running, Priority: 0x0, PC: 0x143
+io 2 completion
+Switching to: PID: 0x26, State: Interrupted, Priority: 0x0, PC: 0x144
+Now running: PID: 0x26, State: Running, Priority: 0x0, PC: 0x144
+Returned to Ready Queue: PID: 0x26, State: Running, Priority: 0x0, PC: 0x144
+Ready Queue: Q0:Count=41: P25->P26->P27->P28->P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37-* : contents: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x22D
+Q1:Count=8: P5->P4->P7->P7->P6->P9->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x384
+
+
+Current PCB: pid#38, io 2
+io 2 request
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x5DC
+
+
+Currently Running PCB: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x4B0
+timer interrupt
+Switching to: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x5DC
+Ready Queue: Q0:Count=41: P10->P39->P29->P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x12F
+Q1:Count=7: P4->P7->P7->P6->P9->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x384
+
+
+deadlock detected for processes PID10 and PID12
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Process enqueued: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x384
+io 2 completion
+Current PCB: pid#39, io 2
+
+
+Currently Running PCB: PID: 0x27, State: Running, Priority: 0x0, PC: 0xE5
+io 2 request
+Switching to: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0x27, State: Waiting, Priority: 0x0, PC: 0x15D
+Ready Queue: Q0:Count=40: P30->P11->P31->P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38-* : contents: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x208
+Q1:Count=9: P4->P7->P7->P6->P9->P9->P8->P11->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x384
+
+
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x5DC
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x384
+
+
+Currently Running PCB: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x4B0
+io 2 completion
+Switching to: PID: 0x1F, State: Interrupted, Priority: 0x0, PC: 0x4B1
+Now running: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x4B1
+Returned to Ready Queue: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x4B1
+Ready Queue: Q0:Count=41: P40->P32->P1->P33->P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39-* : contents: PID: 0x27, State: Ready, Priority: 0x0, PC: 0x15D
+Q1:Count=9: P7->P7->P6->P9->P9->P8->P11->P10->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x384
+
+
+timer interrupt
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x5DC
+Current PCB: pid#40, io 2
+io 2 request
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x5DC
+PID: 1, sequence: 1
+
+
+Currently Running PCB: PID: 0x1, State: Running, Priority: 0x1, PC: 0x12F
+timer interrupt
+Switching to: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x4B0
+Now running: PID: 0x21, State: Running, Priority: 0x0, PC: 0x4B0
+Returned to Ready Queue: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+Ready Queue: Q0:Count=40: P41->P34->P35->P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32-* : contents: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x5DC
+Q1:Count=9: P7->P6->P9->P9->P8->P11->P10->P11->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x5DC
+Current PCB: pid#41, io 2
+io 2 request
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x5DC
+
+
+Currently Running PCB: PID: 0x23, State: Running, Priority: 0x0, PC: 0x4B0
+io 2 completion
+Switching to: PID: 0x23, State: Interrupted, Priority: 0x0, PC: 0x5A6
+Now running: PID: 0x23, State: Running, Priority: 0x0, PC: 0x5A6
+Returned to Ready Queue: PID: 0x23, State: Running, Priority: 0x0, PC: 0x5A6
+Ready Queue: Q0:Count=41: P1->P42->P36->P12->P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40-* : contents: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x198
+Q1:Count=8: P6->P9->P9->P8->P11->P10->P11->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x5DC
+PID 1: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 1 sent signal on condition 0x606300
+timer interrupt
+Process enqueued: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x387
+Current PCB: pid#42, io 2
+io 2 request
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x24, State: Running, Priority: 0x0, PC: 0x4AE
+timer interrupt
+Switching to: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0xC, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x5DA
+Ready Queue: Q0:Count=40: P13->P0->P43->P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36-* : contents: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x5DA
+Q1:Count=8: P9->P9->P8->P11->P10->P11->P1->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x387
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x708
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x0, State: Running, Priority: 0x1, PC: 0x384
+timer interrupt
+Switching to: PID: 0x2B, State: Ready, Priority: 0x0, PC: 0x81
+Now running: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x81
+Returned to Ready Queue: PID: 0x0, State: Ready, Priority: 0x1, PC: 0xC8
+Ready Queue: Q0:Count=41: P14->P15->P3->P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x12F
+Q1:Count=8: P9->P8->P11->P10->P11->P1->P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+Current PCB: pid#43, io 2
+io 2 request
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x708
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x706
+
+
+Currently Running PCB: PID: 0x3, State: Running, Priority: 0x1, PC: 0x12F
+io 2 completion
+Switching to: PID: 0x3, State: Interrupted, Priority: 0x1, PC: 0x13D
+Now running: PID: 0x3, State: Running, Priority: 0x1, PC: 0x13D
+Returned to Ready Queue: PID: 0x3, State: Running, Priority: 0x1, PC: 0x13D
+Ready Queue: Q0:Count=41: P44->P16->P17->P18->P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42-* : contents: PID: 0x2A, State: Ready, Priority: 0x0, PC: 0x13B
+Q1:Count=8: P9->P8->P11->P10->P11->P1->P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+PID: 3, sequence: 1
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x25B
+Current PCB: pid#44, io 2
+io 2 request
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x708
+
+
+Currently Running PCB: PID: 0x11, State: Running, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Switching to: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x12, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x708
+Ready Queue: Q0:Count=40: P3->P19->P20->P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17-* : contents: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x708
+Q1:Count=8: P8->P11->P10->P11->P1->P1->P0->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+io 2 completion
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x708
+PID 3: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 3 sent signal on condition 0x606304
+timer interrupt
+Process enqueued: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x387
+
+
+Currently Running PCB: PID: 0x13, State: Running, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Switching to: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x14, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x708
+Ready Queue: Q0:Count=41: P21->P2->P22->P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19-* : contents: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x708
+Q1:Count=8: P11->P10->P11->P1->P1->P0->P3->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x387
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x708
+
+
+Currently Running PCB: PID: 0x2, State: Running, Priority: 0x1, PC: 0x384
+timer interrupt
+Switching to: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x16, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x2, State: Ready, Priority: 0x1, PC: 0xC8
+Ready Queue: Q0:Count=42: P23->P24->P5->P37->P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x384
+Q1:Count=8: P10->P11->P1->P1->P0->P3->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x708
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x708
+PID: 5, sequence: 1
+
+
+Currently Running PCB: PID: 0x5, State: Running, Priority: 0x1, PC: 0x12F
+timer interrupt
+Switching to: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x22D
+Now running: PID: 0x25, State: Running, Priority: 0x0, PC: 0x22D
+Returned to Ready Queue: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x25B
+Ready Queue: Q0:Count=42: P25->P26->P27->P5->P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x384
+Q1:Count=8: P11->P1->P1->P0->P3->P3->P2->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+Current PCB: pid#37, io 1
+io 1 request
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x708
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x708
+
+
+Currently Running PCB: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Switching to: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x25B
+Now running: PID: 0x5, State: Running, Priority: 0x1, PC: 0x25B
+Returned to Ready Queue: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x708
+Ready Queue: Q0:Count=42: P28->P38->P29->P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27-* : contents: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x708
+Q1:Count=7: P1->P1->P0->P3->P3->P2->P5-* : contents: PID: 0x5, State: Running, Priority: 0x1, PC: 0x25B
+
+
+PID 5: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 5 sent signal on condition 0x606308
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x387
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x708
+io 1 completion
+Current PCB: pid#38, io 1
+
+
+Currently Running PCB: PID: 0x26, State: Running, Priority: 0x0, PC: 0x209
+io 1 request
+Switching to: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x26, State: Waiting, Priority: 0x0, PC: 0x29D
+Ready Queue: Q0:Count=42: P4->P30->P39->P31->P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x387
+Q1:Count=7: P1->P0->P3->P3->P2->P5->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x387
+
+
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x4, State: Ready, Priority: 0x1, PC: 0xC8
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x708
+Current PCB: pid#39, io 1
+
+
+Currently Running PCB: PID: 0x27, State: Running, Priority: 0x0, PC: 0x15D
+io 1 request
+Switching to: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x27, State: Waiting, Priority: 0x0, PC: 0x1F8
+Ready Queue: Q0:Count=41: P7->P32->P33->P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x387
+Q1:Count=7: P0->P3->P3->P2->P5->P5->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+PID: 7, sequence: 1
+timer interrupt
+Process enqueued: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+Currently Running PCB: PID: 0x20, State: Running, Priority: 0x0, PC: 0x5DC
+timer interrupt
+Switching to: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x5DC
+Now running: PID: 0x21, State: Running, Priority: 0x0, PC: 0x5DC
+Returned to Ready Queue: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x708
+Ready Queue: Q0:Count=41: P7->P34->P40->P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32-* : contents: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x708
+Q1:Count=8: P0->P3->P3->P2->P5->P5->P4->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x708
+PID 7: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 7 sent signal on condition 0x60630c
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x387
+io 1 completion
+
+
+Currently Running PCB: PID: 0x22, State: Running, Priority: 0x0, PC: 0x66F
+timer interrupt
+Switching to: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x198
+Now running: PID: 0x28, State: Running, Priority: 0x0, PC: 0x198
+Returned to Ready Queue: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x708
+Ready Queue: Q0:Count=42: P35->P6->P36->P41->P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34-* : contents: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x708
+Q1:Count=8: P3->P3->P2->P5->P5->P4->P7->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x387
+
+
+Current PCB: pid#40, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x708
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x6, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+Currently Running PCB: PID: 0x24, State: Running, Priority: 0x0, PC: 0x5DA
+timer interrupt
+Switching to: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x17A
+Now running: PID: 0x29, State: Running, Priority: 0x0, PC: 0x17A
+Returned to Ready Queue: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x706
+Ready Queue: Q0:Count=41: P12->P13->P9->P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36-* : contents: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x706
+Q1:Count=8: P3->P2->P5->P5->P4->P7->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+io 1 completion
+Current PCB: pid#41, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x834
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0xD, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x12F
+Now running: PID: 0x9, State: Running, Priority: 0x1, PC: 0x12F
+Returned to Ready Queue: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=42: P14->P15->P42->P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13-* : contents: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=7: P2->P5->P5->P4->P7->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+PID: 9, sequence: 1
+timer interrupt
+Process enqueued: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x25B
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x834
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x832
+
+
+Currently Running PCB: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x13B
+io 1 completion
+Switching to: PID: 0x2A, State: Interrupted, Priority: 0x0, PC: 0x13C
+Now running: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x13C
+Returned to Ready Queue: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x13C
+Ready Queue: Q0:Count=43: P9->P16->P17->P43->P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41-* : contents: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x1E9
+Q1:Count=7: P5->P5->P4->P7->P7->P6->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+No deadlocks were detected
+Current PCB: pid#42, io 1
+io 1 request
+PID 9: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 9 sent signal on condition 0x606310
+timer interrupt
+Process enqueued: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x387
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x834
+No deadlocks were detected
+
+
+Currently Running PCB: PID: 0x11, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x2B, State: Ready, Priority: 0x0, PC: 0xE4
+Now running: PID: 0x2B, State: Running, Priority: 0x0, PC: 0xE4
+Returned to Ready Queue: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=42: P18->P8->P19->P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x387
+Q1:Count=7: P5->P4->P7->P7->P6->P9->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x387
+
+
+io 1 completion
+Current PCB: pid#43, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x834
+
+
+Currently Running PCB: PID: 0x8, State: Running, Priority: 0x1, PC: 0x384
+timer interrupt
+Switching to: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x708
+Now running: PID: 0x13, State: Running, Priority: 0x0, PC: 0x708
+Returned to Ready Queue: PID: 0x8, State: Ready, Priority: 0x1, PC: 0xC8
+Ready Queue: Q0:Count=41: P44->P20->P21->P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18-* : contents: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=8: P5->P4->P7->P7->P6->P9->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x834
+io 1 completion
+Current PCB: pid#44, io 1
+io 1 request
+
+
+Currently Running PCB: PID: 0x14, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x708
+Now running: PID: 0x15, State: Running, Priority: 0x0, PC: 0x708
+Returned to Ready Queue: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=42: P11->P22->P23->P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20-* : contents: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=7: P4->P7->P7->P6->P9->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x834
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 10
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0xC8
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x834
+
+
+Currently Running PCB: PID: 0x17, State: Running, Priority: 0x0, PC: 0x708
+io 1 completion
+Switching to: PID: 0x17, State: Interrupted, Priority: 0x0, PC: 0x709
+Now running: PID: 0x17, State: Running, Priority: 0x0, PC: 0x709
+Returned to Ready Queue: PID: 0x17, State: Running, Priority: 0x0, PC: 0x709
+Ready Queue: Q0:Count=43: P24->P10->P25->P26->P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44-* : contents: PID: 0x2C, State: Ready, Priority: 0x0, PC: 0x1E2
+Q1:Count=7: P7->P7->P6->P9->P9->P8->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x834
+No deadlocks were detected
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x834
+PID 10: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 11
+timer interrupt
+Process enqueued: PID: 0xA, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+Currently Running PCB: PID: 0x19, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x708
+Now running: PID: 0x1A, State: Running, Priority: 0x0, PC: 0x708
+Returned to Ready Queue: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=43: P11->P27->P28->P37->P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25-* : contents: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=8: P7->P6->P9->P9->P8->P11->P11->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0xC8
+
+
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x834
+No deadlocks were detected
+Both resources are used
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 11
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x1F4
+timer interrupt
+Process enqueued: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x834
+
+
+Currently Running PCB: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x2F1
+Now running: PID: 0x25, State: Running, Priority: 0x0, PC: 0x2F1
+Returned to Ready Queue: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=43: P1->P29->P30->P1->P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28-* : contents: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=8: P6->P9->P9->P8->P11->P11->P10->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+Current PCB: pid#37, io 2
+io 2 request
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x1, State: Ready, Priority: 0x1, PC: 0xCB
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x834
+
+
+Currently Running PCB: PID: 0x1E, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x1, State: Ready, Priority: 0x1, PC: 0xCB
+Now running: PID: 0x1, State: Running, Priority: 0x1, PC: 0xCB
+Returned to Ready Queue: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=42: P38->P31->P32->P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30-* : contents: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=8: P9->P9->P8->P11->P11->P10->P11->P1-* : contents: PID: 0x1, State: Running, Priority: 0x1, PC: 0xCB
+
+
+io 2 completion
+PID 1: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 1 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+deadlock detected for processes PID11 and PID12
+Current PCB: pid#38, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x708
+timer interrupt
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x708
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x708
+Returned to Ready Queue: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x834
+Ready Queue: Q0:Count=42: P33->P0->P39->P34->P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x387
+Q1:Count=7: P9->P8->P11->P11->P10->P11->P1-* : contents: PID: 0x1, State: Waiting, Priority: 0x1, PC: 0x12F
+
+
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x834
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x834
+deadlock detected for processes PID11 and PID12
+PID 0: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x1F4
+Current PCB: pid#39, io 2
+
+
+Currently Running PCB: PID: 0x27, State: Running, Priority: 0x0, PC: 0x1F8
+io 2 request
+Switching to: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x708
+Now running: PID: 0x22, State: Running, Priority: 0x0, PC: 0x708
+Returned to Ready Queue: PID: 0x27, State: Waiting, Priority: 0x0, PC: 0x25E
+Ready Queue: Q0:Count=41: P35->P3->P36->P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x387
+Q1:Count=7: P8->P11->P11->P10->P11->P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x834
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x834
+deadlock detected for processes PID11 and PID12
+
+
+Currently Running PCB: PID: 0x3, State: Running, Priority: 0x1, PC: 0x387
+timer interrupt
+Switching to: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x706
+Now running: PID: 0x24, State: Running, Priority: 0x0, PC: 0x706
+Returned to Ready Queue: PID: 0x3, State: Ready, Priority: 0x1, PC: 0xCB
+Ready Queue: Q0:Count=41: P40->P12->P3->P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35-* : contents: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x834
+Q1:Count=8: P8->P11->P11->P10->P11->P1->P0->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0xCB
+
+
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x832
+Current PCB: pid#40, io 2
+io 2 request
+io 2 completion
+
+
+Currently Running PCB: PID: 0xC, State: Running, Priority: 0x0, PC: 0x8CF
+timer interrupt
+Switching to: PID: 0x3, State: Ready, Priority: 0x1, PC: 0xCB
+Now running: PID: 0x3, State: Running, Priority: 0x1, PC: 0xCB
+Returned to Ready Queue: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=42: P13->P14->P15->P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12-* : contents: PID: 0xC, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=7: P11->P11->P10->P11->P1->P0->P3-* : contents: PID: 0x3, State: Running, Priority: 0x1, PC: 0xCB
+
+
+PID 3: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 3 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0x8FD
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x960
+
+
+Currently Running PCB: PID: 0xF, State: Running, Priority: 0x0, PC: 0x832
+io 2 completion
+Switching to: PID: 0xF, State: Interrupted, Priority: 0x0, PC: 0x8CE
+Now running: PID: 0xF, State: Running, Priority: 0x0, PC: 0x8CE
+Returned to Ready Queue: PID: 0xF, State: Running, Priority: 0x0, PC: 0x8CE
+Ready Queue: Q0:Count=43: P2->P41->P16->P17->P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40-* : contents: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x1F5
+Q1:Count=6: P11->P10->P11->P1->P0->P3-* : contents: PID: 0x3, State: Waiting, Priority: 0x1, PC: 0x12F
+
+
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0x95E
+PID 2: requested lock on mutex 0x7ffd4ea85798 - succeeded
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x1F4
+Current PCB: pid#41, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x10, State: Running, Priority: 0x0, PC: 0x834
+timer interrupt
+Switching to: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x11, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=42: P5->P42->P18->P19->P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16-* : contents: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=6: P10->P11->P1->P0->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0x960
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x5, State: Ready, Priority: 0x1, PC: 0xCB
+Current PCB: pid#42, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x12, State: Running, Priority: 0x0, PC: 0x834
+timer interrupt
+Switching to: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x13, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=41: P5->P43->P20->P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18-* : contents: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=6: P11->P1->P0->P3->P2->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0xCB
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0x960
+PID 5: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 5 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+Current PCB: pid#43, io 2
+
+
+Currently Running PCB: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x19E
+io 2 request
+Switching to: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x14, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x2B, State: Waiting, Priority: 0x0, PC: 0x1F2
+Ready Queue: Q0:Count=41: P21->P4->P22->P44->P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x1F4
+Q1:Count=5: P1->P0->P3->P2->P5-* : contents: PID: 0x5, State: Waiting, Priority: 0x1, PC: 0x12F
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0x960
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0x960
+PID 4: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x1F4
+deadlock detected for processes PID11 and PID12
+
+
+Currently Running PCB: PID: 0x16, State: Running, Priority: 0x0, PC: 0x834
+timer interrupt
+Switching to: PID: 0x2C, State: Ready, Priority: 0x0, PC: 0x1E2
+Now running: PID: 0x2C, State: Running, Priority: 0x0, PC: 0x1E2
+Returned to Ready Queue: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=41: P23->P24->P7->P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1-* : contents: PID: 0x1, State: Waiting, Priority: 0x1, PC: 0x12F
+Q1:Count=5: P0->P3->P2->P5->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+Current PCB: pid#44, io 2
+io 2 request
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x960
+
+
+Currently Running PCB: PID: 0x18, State: Running, Priority: 0x0, PC: 0x834
+timer interrupt
+Switching to: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x387
+Now running: PID: 0x7, State: Running, Priority: 0x1, PC: 0x387
+Returned to Ready Queue: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=41: P25->P26->P27->P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24-* : contents: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=5: P0->P3->P2->P5->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+timer interrupt
+Process enqueued: PID: 0x7, State: Ready, Priority: 0x1, PC: 0xCB
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0x960
+io 2 completion
+
+
+Currently Running PCB: PID: 0x1A, State: Running, Priority: 0x0, PC: 0x869
+timer interrupt
+Switching to: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x1B, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=42: P7->P28->P29->P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26-* : contents: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=5: P3->P2->P5->P4->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0xCB
+
+
+timer interrupt
+Process enqueued: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0x960
+PID 7: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 7 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x8FD
+
+
+Currently Running PCB: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x834
+io 2 completion
+Switching to: PID: 0x1D, State: Interrupted, Priority: 0x0, PC: 0x86A
+Now running: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x86A
+Returned to Ready Queue: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x86A
+Ready Queue: Q0:Count=43: P6->P30->P37->P31->P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44-* : contents: PID: 0x2C, State: Ready, Priority: 0x0, PC: 0x21E
+Q1:Count=4: P2->P5->P4->P7-* : contents: PID: 0x7, State: Waiting, Priority: 0x1, PC: 0x12F
+
+
+timer interrupt
+Process enqueued: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0x960
+PID 6: requested lock on mutex 0x7ffd4ea85798 - succeeded
+timer interrupt
+Process enqueued: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x1F4
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x960
+Current PCB: pid#37, io 1
+
+
+Currently Running PCB: PID: 0x25, State: Running, Priority: 0x0, PC: 0x2F5
+io 1 request
+Switching to: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x25, State: Waiting, Priority: 0x0, PC: 0x387
+Ready Queue: Q0:Count=42: P9->P32->P33->P9->P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x1F4
+Q1:Count=4: P5->P4->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+timer interrupt
+Process enqueued: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0x960
+timer interrupt
+Process enqueued: PID: 0x9, State: Ready, Priority: 0x1, PC: 0xCB
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x960
+
+
+Currently Running PCB: PID: 0x21, State: Running, Priority: 0x0, PC: 0x834
+timer interrupt
+Switching to: PID: 0x9, State: Ready, Priority: 0x1, PC: 0xCB
+Now running: PID: 0x9, State: Running, Priority: 0x1, PC: 0xCB
+Returned to Ready Queue: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=42: P38->P34->P35->P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33-* : contents: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x960
+Q1:Count=4: P4->P7->P6->P9-* : contents: PID: 0x9, State: Running, Priority: 0x1, PC: 0xCB
+
+
+PID 9: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 9 requested condition wait on cond 0x7ffd4ea85798 with mutex 0x7ffd4ea85790
+Current PCB: pid#38, io 1
+io 1 request
+io 1 completion
+
+
+Currently Running PCB: PID: 0x22, State: Running, Priority: 0x0, PC: 0x86F
+timer interrupt
+Switching to: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x834
+Now running: PID: 0x23, State: Running, Priority: 0x0, PC: 0x834
+Returned to Ready Queue: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x960
+Ready Queue: Q0:Count=42: P36->P8->P39->P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x1F4
+Q1:Count=3: P7->P6->P9-* : contents: PID: 0x9, State: Waiting, Priority: 0x1, PC: 0x12F
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0x960
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0x95E
+io 1 completion
+PID 8: requested lock on mutex 0x7ffd4ea85798 - succeeded
+
+
+Currently Running PCB: PID: 0x8, State: Running, Priority: 0x1, PC: 0x104
+timer interrupt
+Switching to: PID: 0x27, State: Ready, Priority: 0x0, PC: 0x25E
+Now running: PID: 0x27, State: Running, Priority: 0x0, PC: 0x25E
+Returned to Ready Queue: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x1F4
+Ready Queue: Q0:Count=42: P12->P13->P11->P14->P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38-* : contents: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x3E3
+Q1:Count=4: P7->P6->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+deadlock detected for processes PID11 and PID12
+Current PCB: pid#39, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0xC, State: Ready, Priority: 0x0, PC: 0xA8C
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0xA29
+
+
+Currently Running PCB: PID: 0xB, State: Running, Priority: 0x1, PC: 0x1F4
+timer interrupt
+Switching to: PID: 0xE, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0xE, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x320
+Ready Queue: Q0:Count=41: P40->P15->P11->P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13-* : contents: PID: 0xD, State: Ready, Priority: 0x0, PC: 0xA29
+Q1:Count=4: P6->P9->P8->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x320
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0xA8C
+Current PCB: pid#40, io 1
+io 1 request
+io 1 completion
+
+
+Currently Running PCB: PID: 0xF, State: Running, Priority: 0x0, PC: 0xA40
+timer interrupt
+Switching to: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x320
+Now running: PID: 0xB, State: Running, Priority: 0x1, PC: 0x320
+Returned to Ready Queue: PID: 0xF, State: Ready, Priority: 0x0, PC: 0xA8A
+Ready Queue: Q0:Count=42: P16->P17->P10->P18->P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15-* : contents: PID: 0xF, State: Ready, Priority: 0x0, PC: 0xA8A
+Q1:Count=3: P9->P8->P11-* : contents: PID: 0xB, State: Running, Priority: 0x1, PC: 0x320
+
+
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 11
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x64
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0xA8C
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0xA8C
+PID 10: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 11
+
+
+Currently Running PCB: PID: 0xA, State: Running, Priority: 0x1, PC: 0xC8
+timer interrupt
+Switching to: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0x12, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x1F4
+Ready Queue: Q0:Count=41: P41->P19->P11->P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17-* : contents: PID: 0x11, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=4: P8->P11->P11->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+deadlock detected for processes PID11 and PID12
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x116
+Current PCB: pid#41, io 1
+io 1 request
+
+
+Currently Running PCB: PID: 0x13, State: Running, Priority: 0x0, PC: 0x960
+timer interrupt
+Switching to: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x64
+Now running: PID: 0xB, State: Running, Priority: 0x1, PC: 0x64
+Returned to Ready Queue: PID: 0x13, State: Ready, Priority: 0x0, PC: 0xA8C
+Ready Queue: Q0:Count=42: P20->P21->P22->P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19-* : contents: PID: 0x13, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=3: P11->P11->P10-* : contents: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x1F4
+
+
+Both resources are used
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x190
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0xA8C
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0xA8C
+
+
+Currently Running PCB: PID: 0x16, State: Running, Priority: 0x0, PC: 0x960
+io 1 completion
+Switching to: PID: 0x16, State: Interrupted, Priority: 0x0, PC: 0x961
+Now running: PID: 0x16, State: Running, Priority: 0x0, PC: 0x961
+Returned to Ready Queue: PID: 0x16, State: Running, Priority: 0x0, PC: 0x961
+Ready Queue: Q0:Count=43: P1->P42->P23->P24->P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41-* : contents: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x2A9
+Q1:Count=3: P11->P10->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x190
+
+
+timer interrupt
+Process enqueued: PID: 0x16, State: Ready, Priority: 0x0, PC: 0xA8C
+Unlocked called before any lock
+PID: 1, sequence: 2
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+Current PCB: pid#42, io 1
+io 1 request
+
+
+Currently Running PCB: PID: 0x17, State: Running, Priority: 0x0, PC: 0x960
+timer interrupt
+Switching to: PID: 0x18, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0x18, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0x17, State: Ready, Priority: 0x0, PC: 0xA8C
+Ready Queue: Q0:Count=42: P0->P25->P43->P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x190
+Q1:Count=3: P10->P11->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0xA8C
+PID 0: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 0 sent signal on condition 0x606300
+PID 1: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 0
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x320
+io 1 completion
+
+
+Currently Running PCB: PID: 0x19, State: Running, Priority: 0x0, PC: 0x961
+timer interrupt
+Switching to: PID: 0x2B, State: Ready, Priority: 0x0, PC: 0x1F2
+Now running: PID: 0x2B, State: Running, Priority: 0x0, PC: 0x1F2
+Returned to Ready Queue: PID: 0x19, State: Ready, Priority: 0x0, PC: 0xA8C
+Ready Queue: Q0:Count=42: P26->P27->P3->P28->P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25-* : contents: PID: 0x19, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=6: P10->P11->P1->P1->P1->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x320
+
+
+Current PCB: pid#43, io 1
+io 1 request
+timer interrupt
+Process enqueued: PID: 0x1A, State: Ready, Priority: 0x0, PC: 0xA8C
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0xA8C
+Unlocked called before any lock
+PID: 3, sequence: 2
+
+
+Currently Running PCB: PID: 0x3, State: Running, Priority: 0x1, PC: 0x12F
+timer interrupt
+Switching to: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0x8FD
+Now running: PID: 0x1C, State: Running, Priority: 0x0, PC: 0x8FD
+Returned to Ready Queue: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x25B
+Ready Queue: Q0:Count=41: P44->P29->P30->P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27-* : contents: PID: 0x1B, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=6: P11->P1->P1->P1->P0->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+io 1 completion
+timer interrupt
+Process enqueued: PID: 0x1C, State: Ready, Priority: 0x0, PC: 0xA29
+Current PCB: pid#44, io 1
+io 1 request
+deadlock detected for processes PID11 and PID12
+
+
+Currently Running PCB: PID: 0x1D, State: Running, Priority: 0x0, PC: 0x960
+timer interrupt
+Switching to: PID: 0x1E, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0x1E, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0xA8C
+Ready Queue: Q0:Count=42: P2->P31->P32->P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29-* : contents: PID: 0x1D, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=5: P1->P1->P1->P0->P3-* : contents: PID: 0x3, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+PID 2: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 2 sent signal on condition 0x606304
+PID 3: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 2
+timer interrupt
+Process enqueued: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x320
+io 1 completion
+
+
+Currently Running PCB: PID: 0x1F, State: Running, Priority: 0x0, PC: 0x9B1
+timer interrupt
+Switching to: PID: 0x20, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0x20, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0xA8C
+Ready Queue: Q0:Count=42: P5->P33->P37->P34->P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31-* : contents: PID: 0x1F, State: Ready, Priority: 0x0, PC: 0xA8C
+Q1:Count=7: P1->P1->P0->P3->P3->P3->P2-* : contents: PID: 0x2, State: Ready, Priority: 0x1, PC: 0x320
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x20, State: Ready, Priority: 0x0, PC: 0xA8C
+Unlocked called before any lock
+PID: 5, sequence: 2
+timer interrupt
+Process enqueued: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x25B
+timer interrupt
+Process enqueued: PID: 0x21, State: Ready, Priority: 0x0, PC: 0x126
+Current PCB: pid#37, io 2
+
+
+Currently Running PCB: PID: 0x25, State: Running, Priority: 0x0, PC: 0x387
+io 2 request
+Switching to: PID: 0x22, State: Ready, Priority: 0x0, PC: 0x960
+Now running: PID: 0x22, State: Running, Priority: 0x0, PC: 0x960
+Returned to Ready Queue: PID: 0x25, State: Waiting, Priority: 0x0, PC: 0x423
+Ready Queue: Q0:Count=41: P4->P35->P36->P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1-* : contents: PID: 0x1, State: Ready, Priority: 0x1, PC: 0x25B
+Q1:Count=7: P1->P0->P3->P3->P3->P2->P5-* : contents: PID: 0x5, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+deadlock detected for processes PID11 and PID12
+PID 4: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 4 sent signal on condition 0x606308
+PID 5: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 4
+timer interrupt
+Process enqueued: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x320
+timer interrupt
+Process enqueued: PID: 0x23, State: Ready, Priority: 0x0, PC: 0xA8C
+
+
+Currently Running PCB: PID: 0x24, State: Running, Priority: 0x0, PC: 0x95E
+io 2 completion
+Switching to: PID: 0x24, State: Interrupted, Priority: 0x0, PC: 0x9C0
+Now running: PID: 0x24, State: Running, Priority: 0x0, PC: 0x9C0
+Returned to Ready Queue: PID: 0x24, State: Running, Priority: 0x0, PC: 0x9C0
+Ready Queue: Q0:Count=41: P38->P7->P12->P13->P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37-* : contents: PID: 0x25, State: Ready, Priority: 0x0, PC: 0x423
+Q1:Count=9: P0->P3->P3->P3->P2->P5->P5->P5->P4-* : contents: PID: 0x4, State: Ready, Priority: 0x1, PC: 0x320
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x24, State: Ready, Priority: 0x0, PC: 0xA8A
+Current PCB: pid#38, io 2
+io 2 request
+Unlocked called before any lock
+PID: 7, sequence: 2
+timer interrupt
+Process enqueued: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+Currently Running PCB: PID: 0xC, State: Running, Priority: 0x0, PC: 0xA8C
+timer interrupt
+Switching to: PID: 0xD, State: Ready, Priority: 0x0, PC: 0xA29
+Now running: PID: 0xD, State: Running, Priority: 0x0, PC: 0xA29
+Returned to Ready Queue: PID: 0xC, State: Ready, Priority: 0x0, PC: 0xBB8
+Ready Queue: Q0:Count=40: P14->P6->P39->P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0-* : contents: PID: 0x0, State: Ready, Priority: 0x1, PC: 0x320
+Q1:Count=9: P3->P3->P3->P2->P5->P5->P5->P4->P7-* : contents: PID: 0x7, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0xD, State: Ready, Priority: 0x0, PC: 0xB55
+timer interrupt
+Process enqueued: PID: 0xE, State: Ready, Priority: 0x0, PC: 0xBB8
+io 2 completion
+PID 6: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 6 sent signal on condition 0x60630c
+PID 7: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 6
+
+
+Currently Running PCB: PID: 0x6, State: Running, Priority: 0x1, PC: 0x1F5
+timer interrupt
+Switching to: PID: 0x27, State: Ready, Priority: 0x0, PC: 0x303
+Now running: PID: 0x27, State: Running, Priority: 0x0, PC: 0x303
+Returned to Ready Queue: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x320
+Ready Queue: Q0:Count=40: P15->P16->P9->P17->P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38-* : contents: PID: 0x26, State: Ready, Priority: 0x0, PC: 0x45C
+Q1:Count=12: P3->P3->P3->P2->P5->P5->P5->P4->P7->P7->P7->P6-* : contents: PID: 0x6, State: Ready, Priority: 0x1, PC: 0x320
+
+
+Current PCB: pid#39, io 2
+io 2 request
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0xF, State: Ready, Priority: 0x0, PC: 0xBB6
+timer interrupt
+Process enqueued: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x7E
+Unlocked called before any lock
+PID: 9, sequence: 2
+
+
+Currently Running PCB: PID: 0x9, State: Running, Priority: 0x1, PC: 0x12F
+timer interrupt
+Switching to: PID: 0x11, State: Ready, Priority: 0x0, PC: 0xA8C
+Now running: PID: 0x11, State: Running, Priority: 0x0, PC: 0xA8C
+Returned to Ready Queue: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x25B
+Ready Queue: Q0:Count=39: P40->P18->P8->P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38->P3->P15->P16-* : contents: PID: 0x10, State: Ready, Priority: 0x0, PC: 0x7E
+Q1:Count=12: P3->P3->P2->P5->P5->P5->P4->P7->P7->P7->P6->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+io 2 completion
+timer interrupt
+Process enqueued: PID: 0x11, State: Ready, Priority: 0x0, PC: 0xBB8
+deadlock detected for processes PID11 and PID12
+Current PCB: pid#40, io 2
+io 2 request
+
+
+Currently Running PCB: PID: 0x12, State: Running, Priority: 0x0, PC: 0x116
+timer interrupt
+Switching to: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x1F4
+Now running: PID: 0x8, State: Running, Priority: 0x1, PC: 0x1F4
+Returned to Ready Queue: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x242
+Ready Queue: Q0:Count=40: P19->P20->P21->P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38->P3->P15->P16->P39->P17->P3->P18-* : contents: PID: 0x12, State: Ready, Priority: 0x0, PC: 0x242
+Q1:Count=11: P3->P2->P5->P5->P5->P4->P7->P7->P7->P6->P9-* : contents: PID: 0x9, State: Ready, Priority: 0x1, PC: 0x25B
+
+
+PID 8: requested lock on mutex 0x7ffd4ea85798 - succeeded
+PID 8 sent signal on condition 0x606310
+PID 9: requested lock on mutex 0x7ffd4ea85768 - blocked by PID 8
+timer interrupt
+Process enqueued: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x320
+timer interrupt
+Process enqueued: PID: 0x13, State: Ready, Priority: 0x0, PC: 0xBB8
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x14, State: Ready, Priority: 0x0, PC: 0xBB8
+
+
+Currently Running PCB: PID: 0x15, State: Running, Priority: 0x0, PC: 0xA8C
+io 2 completion
+Switching to: PID: 0x15, State: Interrupted, Priority: 0x0, PC: 0xA8D
+Now running: PID: 0x15, State: Running, Priority: 0x0, PC: 0xA8D
+Returned to Ready Queue: PID: 0x15, State: Running, Priority: 0x0, PC: 0xA8D
+Ready Queue: Q0:Count=41: P11->P41->P22->P23->P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38->P3->P15->P16->P39->P17->P3->P18->P19->P3->P20->P40-* : contents: PID: 0x28, State: Ready, Priority: 0x0, PC: 0x2B5
+Q1:Count=13: P2->P5->P5->P5->P4->P7->P7->P7->P6->P9->P9->P9->P8-* : contents: PID: 0x8, State: Ready, Priority: 0x1, PC: 0x320
+
+
+timer interrupt
+Process enqueued: PID: 0x15, State: Ready, Priority: 0x0, PC: 0xBB8
+PID 11: requested lock on mutex 0x7ffd4ea85798 - blocked by PID 11
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x2BC
+Current PCB: pid#41, io 2
+io 2 request
+deadlock detected for processes PID11 and PID12
+
+
+Currently Running PCB: PID: 0x16, State: Running, Priority: 0x0, PC: 0xA8C
+timer interrupt
+Switching to: PID: 0x17, State: Ready, Priority: 0x0, PC: 0xA8C
+Now running: PID: 0x17, State: Running, Priority: 0x0, PC: 0xA8C
+Returned to Ready Queue: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x71
+Ready Queue: Q0:Count=40: P11->P24->P42->P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38->P3->P15->P16->P39->P17->P3->P18->P19->P3->P20->P40->P21->P2->P22-* : contents: PID: 0x16, State: Ready, Priority: 0x0, PC: 0x71
+Q1:Count=13: P5->P5->P5->P4->P7->P7->P7->P6->P9->P9->P9->P8->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x2BC
+
+
+timer interrupt
+Process enqueued: PID: 0x17, State: Ready, Priority: 0x0, PC: 0x20
+timer interrupt
+Process enqueued: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x0
+deadlock detected for processes PID11 and PID12
+timer interrupt
+Process enqueued: PID: 0x18, State: Ready, Priority: 0x0, PC: 0xBB8
+
+
+Currently Running PCB: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x250
+io 2 completion
+Switching to: PID: 0x2A, State: Interrupted, Priority: 0x0, PC: 0x251
+Now running: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x251
+Returned to Ready Queue: PID: 0x2A, State: Running, Priority: 0x0, PC: 0x251
+Ready Queue: Q0:Count=41: P25->P10->P26->P27->P43->P28->P11->P29->P1->P44->P31->P32->P33->P1->P35->P1->P37->P36->P12->P0->P13->P14->P38->P3->P15->P16->P39->P17->P3->P18->P19->P3->P20->P40->P21->P2->P22->P23->P24->P5->P41-* : contents: PID: 0x29, State: Ready, Priority: 0x0, PC: 0x2C9
+Q1:Count=13: P5->P5->P4->P7->P7->P7->P6->P9->P9->P9->P8->P11->P11-* : contents: PID: 0xB, State: Ready, Priority: 0x1, PC: 0x0
+
+
+Current PCB: pid#42, io 2
+io 2 request
+timer interrupt
+Process enqueued: PID: 0x19, State: Ready, Priority: 0x0, PC: 0xBB8
+Both resources are used
+timer interrupt
+Process enqueued: PID: 0xA, State: Ready, Priority: 0x1, PC: 0x320
+Ready Queue size: 53
+IO 1 Queue size: 0
+IO 2 Queue size: 1
+Terminated Queue size: 2
+Q:Count=2: P30->P34-* : contents: PID: 0x22, State: Halted, Priority: 0x0, PC: 0x0
+Total processes created: 45

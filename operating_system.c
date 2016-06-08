@@ -3,6 +3,8 @@
 #include "operating_system.h"
 
 #define MAX_LOOPS 100000
+
+// producer consumer program
 #define FIRST_MUTEX_LOCK_INSTRUCTION 301
 #define WAIT_COND_INSTRUCTION 303
 #define FIRST_MUTEX_UNLOCK_INSTRUCTION 304
@@ -12,6 +14,22 @@
 #define CHANGE_INCREMENT_AVAIL_INSTRUCTION 656
 #define COND_SIGNAL_INSTRUCTION 657
 #define SECOND_MUTEX_UNLOCK_INSTRUCTION 658
+
+// mutual resource program
+#define LOCK_R1_INSTRUCTION 1
+#define LOCK_R2_INSTRUCTION 500
+#define PRINT_TO_TRACE_INSTRUCTION 501
+#define UNLOCK_R2_INSTRUCTION 900
+#define UNLOCK_R1_INSTRUCTION 905
+
+
+// deadlock program
+#define DEADLOCK_R2_INSTRUCTION 300
+#define DEADLOCK_R1_INSTRUCTION 301
+#define PRINT_TO_TRACE_INSTRUCTION2 302
+#define DEADUNLOCK_R1_INSTRUCTION 303
+#define DEADUNLOCK_R2_INSTRUCTION 304
+
 
 // Trackers for amount of processes
 int io_process_count;
@@ -47,6 +65,11 @@ PCB_p consumer[5];
 
 Mutex_p mutex[5];
 
+PCB_p mutual_resource_1[1];
+PCB_p mutual_resource_2[1];
+
+Mutex_p r1_mutual_resource_mutex[1];
+Mutex_p r2_mutual_resource_mutex[1];
 // analogous to bufavail, 0 to 1
 int increment_avail[5];
 
@@ -122,6 +145,68 @@ int create_compute_intensive_processes(int amount) {
     total_processes_created++;
   }
   return 0; // for right now
+}
+
+int deadlock_check() {
+  int i;
+  Mutex_p temp1, temp2;
+  for (i = 0; i < 1; i++) {
+    temp1 = r1_mutual_resource_mutex[i];
+    temp2 = r2_mutual_resource_mutex[i];
+    if ((temp1 != NULL && temp1->owner != NULL && !FIFOq_is_empty(temp1->queue))
+          && (temp2 != NULL && temp2->owner != NULL && !FIFOq_is_empty(temp2->queue))) {
+      printf("deadlock detected for processes PID%lu and PID12\n", temp1->owner->pid);
+      return 1;
+    }
+  }
+  printf("No deadlocks were detected\n");
+  return 0;
+}
+
+int create_mutual_resource_pairs() {
+  int i, j, k;
+  unsigned long var_val;
+  unsigned int pair_max_pc = 1000;
+  for (i = 0; i < 1; i++) { // 5 pairs
+    var_val = 300;
+  	mutual_resource_1[i] = PCB_construct();
+  	mutual_resource_2[i] = PCB_construct();
+  	PCB_init(mutual_resource_1[i]);
+  	PCB_init(mutual_resource_2[i]);
+  	mutual_resource_1[i]->priority = 1;
+  	mutual_resource_2[i]->priority = 1;
+  	mutual_resource_1[i]->role = MUTUAL_RESOURCE_USER;
+  	mutual_resource_2[i]->role = MUTUAL_RESOURCE_USER;
+
+  	r1_mutual_resource_mutex[i] = Mutex_construct();
+    r2_mutual_resource_mutex[i] = Mutex_construct();
+
+  	PCB_set_pid(mutual_resource_1[i], pid_counter);
+    pid_counter++;
+  	PCB_set_pid(mutual_resource_2[i], pid_counter);
+    pid_counter++;
+
+  	mutual_resource_1[i]->max_pc = pair_max_pc;
+  	mutual_resource_2[i]->max_pc = pair_max_pc;
+
+
+
+  	PRIORITYq_enqueue(ready_queue, mutual_resource_1[i]);
+  	PRIORITYq_enqueue(ready_queue, mutual_resource_2[i]);
+    total_processes_created++;
+    total_processes_created++;
+  }
+  mutual_resource_1[0]->lock_trap[0] = LOCK_R1_INSTRUCTION;
+  mutual_resource_1[0]->lock_trap[1] = LOCK_R2_INSTRUCTION;
+  mutual_resource_1[0]->unlock_mutex[0] = UNLOCK_R1_INSTRUCTION;
+  mutual_resource_1[0]->unlock_mutex[1] = UNLOCK_R2_INSTRUCTION;
+
+
+  mutual_resource_2[0]->lock_trap[0] = DEADLOCK_R2_INSTRUCTION;
+  mutual_resource_2[0]->lock_trap[1] = DEADLOCK_R1_INSTRUCTION;
+  mutual_resource_2[0]->unlock_mutex[0] = DEADUNLOCK_R1_INSTRUCTION;
+  mutual_resource_2[0]->unlock_mutex[1] = DEADUNLOCK_R2_INSTRUCTION;
+
 }
 
 
@@ -554,6 +639,7 @@ void cpu(void) {
   // Final Project Create processes section
   //*************************************************************************
 	create_producer_consumer_pairs();
+  create_mutual_resource_pairs();
   create_compute_intensive_processes(25);
   //*************************************************************************
   // End final project Create processes section
@@ -684,7 +770,53 @@ void cpu(void) {
       }
     }
 
+    if (current_process->role == MUTUAL_RESOURCE_USER) {
+      if (current_process->pid == mutual_resource_1[0]->pid) {
+        switch (pc_register) {
+          case LOCK_R1_INSTRUCTION:
+            Mutex_lock(r1_mutual_resource_mutex[0], current_process);
+            break;
+          case LOCK_R2_INSTRUCTION:
+            Mutex_lock(r2_mutual_resource_mutex[0], current_process);
+            break;
+          case PRINT_TO_TRACE_INSTRUCTION:
+            printf("Both resources are used\n");
+            break;
+          case UNLOCK_R2_INSTRUCTION:
+            Mutex_unlock(r2_mutual_resource_mutex[0], ready_queue);
+            break;
+          case UNLOCK_R1_INSTRUCTION:
+            Mutex_unlock(r1_mutual_resource_mutex[0], ready_queue);
+            break;
+          default:
+            break;
+        }
+      }
+    }
 
+    if (current_process->role == MUTUAL_RESOURCE_USER) {
+      if (current_process->pid == mutual_resource_2[0]->pid) {
+        switch (pc_register) {
+          case LOCK_R1_INSTRUCTION:
+            Mutex_lock(r1_mutual_resource_mutex[0], current_process);
+            break;
+          case LOCK_R2_INSTRUCTION:
+            Mutex_lock(r2_mutual_resource_mutex[0], current_process);
+            break;
+          case PRINT_TO_TRACE_INSTRUCTION2:
+            printf("Both resources are used\n");
+            break;
+          case UNLOCK_R2_INSTRUCTION:
+            // Mutex_unlock(r2_mutual_resource_mutex[0], ready_queue);
+            break;
+          case UNLOCK_R1_INSTRUCTION:
+            // Mutex_unlock(r1_mutual_resource_mutex[0], ready_queue);
+            break;
+          default:
+            break;
+        }
+      }
+    }
 
 
     // if (current_process->role == PRODUCER || current_process->role == CONSUMER) { // all the producer instructions
@@ -751,6 +883,10 @@ void cpu(void) {
     //   }
 
     // }
+
+    if (run_count % 1000 == 0) {
+      deadlock_check();
+    }
 
     if (descheduled_flag) { // condition wait was called and current process was descheduled
       error_check = pseudo_isr(condition_wait_interrupt);
