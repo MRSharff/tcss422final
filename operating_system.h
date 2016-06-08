@@ -7,8 +7,6 @@
 
 #include "cond_var_type.h"
 
-
-
 #define RUN_TIME 40000
 #define CREATE_ITERATIONS 3
 #define QUANTUM_DURATION 300

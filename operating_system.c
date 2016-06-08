@@ -151,8 +151,8 @@ int create_producer_consumer_pairs() {
   	PCB_set_pid(consumer[i], pid_counter);
     pid_counter++;
 
-    // num_not_incremented[i] = cond_var_p_construct();
-    // num_not_printed[i] = cond_var_p_construct();
+    num_not_incremented[i] = cond_var_p_construct();
+    num_not_printed[i] = cond_var_p_construct();
 
   	prod_cons_shared_var[i]=0;
   	producer[i]->global_variable = &prod_cons_shared_var[i];
@@ -403,6 +403,7 @@ int scheduler(enum interrupt_type int_type) {
       break;
     case condition_wait_interrupt:
       return_status = condition_wait_handler();
+      pcb_to_be_dispatched = round_robin();
       break;
     default: // this should never happen
       return_status = INVALID_INPUT;
@@ -553,7 +554,7 @@ void cpu(void) {
   // Final Project Create processes section
   //*************************************************************************
 	create_producer_consumer_pairs();
-  // create_compute_intensive_processes(25);
+  create_compute_intensive_processes(25);
   //*************************************************************************
   // End final project Create processes section
 
@@ -601,7 +602,7 @@ void cpu(void) {
     //TODO: refactoring of process pseudo program
 
     if (current_process->role == PRODUCER) {
-      printf("Producer is running\n");
+      // printf("Producer is running\n");
       process_index = get_producer_process_index(current_process);
       switch (pc_register) { // producer only instructions
         case FIRST_MUTEX_LOCK_INSTRUCTION:
@@ -629,8 +630,10 @@ void cpu(void) {
           break;
         case COND_SIGNAL_INSTRUCTION:
           printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
-          PRIORITYq_enqueue(ready_queue, cond_signal(num_not_printed[process_index]));
-          cond_signal(num_not_incremented[process_index]);
+          temp_process = cond_signal(num_not_printed[process_index]);
+          if (temp_process != NULL) {
+            PRIORITYq_enqueue(ready_queue, temp_process);
+          }
           break;
         case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
           increment_avail[process_index]--;
@@ -641,7 +644,7 @@ void cpu(void) {
     }
 
     if (current_process->role == CONSUMER) {
-      printf("Consumer is running\n");
+      // printf("Consumer is running\n");
       process_index = get_consumer_process_index(current_process);
       switch (pc_register) { // consumer only instructions
         case FIRST_MUTEX_LOCK_INSTRUCTION:
@@ -658,7 +661,7 @@ void cpu(void) {
           break;
         case WAIT_COND_INSTRUCTION:
           if (increment_avail[process_index] == 1) {
-            cond_wait(num_not_incremented[process_index], mutex[process_index], current_process, ready_queue);
+            cond_wait(num_not_printed[process_index], mutex[process_index], current_process, ready_queue);
             descheduled_flag = 1;
           }
           break;
@@ -668,7 +671,10 @@ void cpu(void) {
           break;
         case COND_SIGNAL_INSTRUCTION:
           printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
-          PRIORITYq_enqueue(ready_queue, cond_signal(num_not_printed[process_index]));
+          temp_process = cond_signal(num_not_incremented[process_index]);
+          if (temp_process != NULL) {
+            PRIORITYq_enqueue(ready_queue, temp_process);
+          }
           break;
         case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
           increment_avail[process_index]++;
@@ -853,23 +859,23 @@ int main(void) {
   printf("Terminated Queue size: %d\n", terminate_queue->size);
   queue_string = FIFOq_to_string(terminate_queue);
   printf("%s\n", queue_string);
-  free(queue_string);
+  // free(queue_string);
   printf("Total processes created: %d\n", total_processes_created);
 
   // Cleanup / free stuff to not have memory leaks
-  PRIORITYq_destruct(ready_queue);
-  FIFOq_destruct(created_queue);
-  FIFOq_destruct(io_1_waiting_queue);
-  FIFOq_destruct(io_2_waiting_queue);
-  FIFOq_destruct(terminate_queue);
+  // PRIORITYq_destruct(ready_queue);
+  // FIFOq_destruct(created_queue);
+  // FIFOq_destruct(io_1_waiting_queue);
+  // FIFOq_destruct(io_2_waiting_queue);
+  // FIFOq_destruct(terminate_queue);
 
-  if (current_process != NULL) {
-    if (current_process->pid != idl->pid) {
-      printf("should never happen if all processes are set to terminate,\n idle process should always be the last thing running********\n");
-      PCB_destruct(current_process);
-    }
-  }
-  PCB_destruct(idl);
+  // if (current_process != NULL) {
+  //   if (current_process->pid != idl->pid) {
+  //     printf("should never happen if all processes are set to terminate,\n idle process should always be the last thing running********\n");
+  //     PCB_destruct(current_process);
+  //   }
+  // }
+  // PCB_destruct(idl);
 
   return 0;
 

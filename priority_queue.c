@@ -47,10 +47,19 @@ int PRIORITYq_enqueue(PRIORITYq_p priority_queue, PCB_p pcb) {
 }
 
 PCB_p PRIORITYq_dequeue(PRIORITYq_p priority_queue) {
-  int priority;
+  priority_queue->starvation_counter++;
+  int priority, i;
   for (priority = 0; priority < PRIORITY_RANGE; priority++) {
     if (FIFOq_is_empty(priority_queue->fifo_queues[priority]) == 0) {
       priority_queue->size--;
+      if (priority_queue->starvation_counter == 4) { // starvation happened, need to boost
+        priority_queue->starvation_counter = 0;
+        for (i = priority + 1; i < PRIORITY_RANGE; i++) { // boost
+          if (!FIFOq_is_empty(priority_queue->fifo_queues[i])) {
+            FIFOq_enqueue(priority_queue->fifo_queues[i-1], FIFOq_dequeue(priority_queue->fifo_queues[i]));
+          }
+        }
+      }
       return FIFOq_dequeue(priority_queue->fifo_queues[priority]);
     }
   }

@@ -6,6 +6,7 @@
 #define PRIORITY_RANGE 16
 
 typedef struct priority_queue {
+  int starvation_counter;
   FIFOq_p fifo_queues[PRIORITY_RANGE];
   int size;
 } PRIORITYq;
