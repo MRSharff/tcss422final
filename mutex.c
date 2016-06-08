@@ -35,9 +35,9 @@ void Mutex_unlock(Mutex_p m, PRIORITYq_p the_ready_queue) {
 
   if (m != NULL) {
     m->owner = FIFOq_dequeue(m->queue);
-	if (m->owner != NULL) {
-		PRIORITYq_enqueue(the_ready_queue, m->owner);
-	}
+  	if (m->owner != NULL) {
+  		PRIORITYq_enqueue(the_ready_queue, m->owner);
+  	}
   } else {
     printf("mutex was null in Mutex_unlock\n");
   }

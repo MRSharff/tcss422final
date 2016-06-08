@@ -38,7 +38,7 @@ PCB_p cond_signal(cond_var_p condition_name){
   	return temp_pcb;
   }
   print_error(NULL_POINTER);
-  printf("in cond_signal, condition_name was null")
+  printf("in cond_signal, condition_name was null");
   return NULL;
 }
 
