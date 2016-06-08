@@ -113,18 +113,13 @@ int create_compute_intensive_processes(int amount) {
   for (i = 0; i < amount; i++) {
     temp = PCB_construct();
     PCB_init(temp);
-    PCB_randomize_IO_arrays(temp);
     temp->max_pc = (rand() % 4000) + 2000;
     temp->terminate = rand() % 5 + 1; // These compute intensive processes do not terminate
     temp->term_count = 0;
     PCB_set_pid(temp, pid_counter);
     pid_counter++;
     FIFOq_enqueue(created_queue, temp);
-    printf("Process PID: %lu io arrays:\n", temp->pid);
-    int arrcntr;
-    for (arrcntr = 0; arrcntr < 4; arrcntr++) {
-      printf("io1[%d]: %d, io2[%d]: %d\n", arrcntr, temp->io_1_[arrcntr], arrcntr, temp->io_2_[arrcntr]);
-    }
+    total_processes_created++;
   }
   return 0; // for right now
 }
@@ -152,9 +147,12 @@ int create_producer_consumer_pairs() {
   	mutex[i] = Mutex_construct();
 
   	PCB_set_pid(producer[i], pid_counter);
-      pid_counter++;
+    pid_counter++;
   	PCB_set_pid(consumer[i], pid_counter);
-      pid_counter++;
+    pid_counter++;
+
+    // num_not_incremented[i] = cond_var_p_construct();
+    // num_not_printed[i] = cond_var_p_construct();
 
   	prod_cons_shared_var[i]=0;
   	producer[i]->global_variable = &prod_cons_shared_var[i];
@@ -164,20 +162,20 @@ int create_producer_consumer_pairs() {
 
     producer[i]->try_lock_trap[0] = 300; // 300
     consumer[i]->try_lock_trap[0] = 300; // 300
-    producer[i]->lock_trap[0] = first_mutex_lock_instruction; // 301
-    consumer[i]->lock_trap[0] = first_mutex_lock_instruction; // 301
-    producer[i]->wait_cond[0] = wait_cond_instruction; // 303
-    consumer[i]->wait_cond[0] = wait_cond_instruction; // 303
-    producer[i]->unlock_mutex[0] = first_mutex_unlock_instruction; // 304
-    consumer[i]->unlock_mutex[0] = first_mutex_unlock_instruction; // 304
+    producer[i]->lock_trap[0] = FIRST_MUTEX_LOCK_INSTRUCTION; // 301
+    consumer[i]->lock_trap[0] = FIRST_MUTEX_LOCK_INSTRUCTION; // 301
+    producer[i]->wait_cond[0] = WAIT_COND_INSTRUCTION; // 303
+    consumer[i]->wait_cond[0] = WAIT_COND_INSTRUCTION; // 303
+    producer[i]->unlock_mutex[0] = FIRST_MUTEX_UNLOCK_INSTRUCTION; // 304
+    consumer[i]->unlock_mutex[0] = FIRST_MUTEX_UNLOCK_INSTRUCTION; // 304
     producer[i]->try_lock_trap[1] = 654; // 654
     consumer[i]->try_lock_trap[1] = 654; // 654
-    producer[i]->lock_trap[1] = second_mutex_lock_instruction; // 655
-    consumer[i]->lock_trap[1] = second_mutex_lock_instruction; // 655
-    producer[i]->sign_cond[1] = cond_signal_instruction; // 657
-    consumer[i]->sign_cond[1] = cond_signal_instruction; // 657
-    producer[i]->unlock_mutex[1] = second_mutex_unlock_instruction; // 658
-    consumer[i]->unlock_mutex[1] = second_mutex_unlock_instruction; // 658
+    producer[i]->lock_trap[1] = SECOND_MUTEX_LOCK_INSTRUCTION; // 655
+    consumer[i]->lock_trap[1] = SECOND_MUTEX_LOCK_INSTRUCTION; // 655
+    producer[i]->sign_cond[1] = COND_SIGNAL_INSTRUCTION; // 657
+    consumer[i]->sign_cond[1] = COND_SIGNAL_INSTRUCTION; // 657
+    producer[i]->unlock_mutex[1] = SECOND_MUTEX_UNLOCK_INSTRUCTION; // 658
+    consumer[i]->unlock_mutex[1] = SECOND_MUTEX_UNLOCK_INSTRUCTION; // 658
 
       // producer[i]->try_lock_trap[0] = var_val; // 300
       // consumer[i]->try_lock_trap[0] = var_val; // 300
@@ -204,6 +202,8 @@ int create_producer_consumer_pairs() {
       // consumer[i]->unlock_mutex[1] = var_val; // 658
   	PRIORITYq_enqueue(ready_queue, producer[i]);
   	PRIORITYq_enqueue(ready_queue, consumer[i]);
+    total_processes_created++;
+    total_processes_created++;
   }
 }
 
@@ -342,6 +342,18 @@ int process_termination_trap_handler(void) {
   return NULL_POINTER;
 }
 
+int condition_wait_handler(void) {
+  if (current_process != NULL) {
+    current_process->pc = sys_stack;//pc_register; // Save context in PCB
+    PCB_set_state(current_process, waiting);
+    current_process = NULL;
+    return NO_ERRORS;
+  }
+  printf("in process_termination_trap_handler: current_process was null\n");
+  exit(NULL_POINTER);
+  return NULL_POINTER;
+}
+
 int scheduler(enum interrupt_type int_type) {
   int return_status;
   PCB_p pcb_to_be_dispatched; // determined by scheduler algorithm RR, SJF, PRIORTY, etc
@@ -388,6 +400,9 @@ int scheduler(enum interrupt_type int_type) {
       return_status = process_termination_trap_handler();
       pcb_to_be_dispatched = round_robin();
       timer_count = 0;
+      break;
+    case condition_wait_interrupt:
+      return_status = condition_wait_handler();
       break;
     default: // this should never happen
       return_status = INVALID_INPUT;
@@ -517,12 +532,16 @@ int get_consumer_process_index(PCB_p the_pcb) {
 
 void cpu(void) {
 
+  PCB_p temp_process;
+
   unsigned int * the_pointer; // used to increment the global variable
   int i, run_count;
   int random_pc_increment;
   int error_check;
   int rand_num_of_processes;
   int process_index;
+
+  int descheduled_flag;
 
   int is_timer_interrupt;
   int is_io_request_interrupt;
@@ -534,6 +553,7 @@ void cpu(void) {
   // Final Project Create processes section
   //*************************************************************************
 	create_producer_consumer_pairs();
+  // create_compute_intensive_processes(25);
   //*************************************************************************
   // End final project Create processes section
 
@@ -547,6 +567,7 @@ void cpu(void) {
     is_io2_completion_interrupt = 0;
     is_io_request_interrupt = 0;
     is_terminate_state = 0;
+    descheduled_flag = 0;
 
     if (create_count < CREATE_ITERATIONS) { // Create IO processes
       rand_num_of_processes = true_random(5);
@@ -580,6 +601,7 @@ void cpu(void) {
     //TODO: refactoring of process pseudo program
 
     if (current_process->role == PRODUCER) {
+      printf("Producer is running\n");
       process_index = get_producer_process_index(current_process);
       switch (pc_register) { // producer only instructions
         case FIRST_MUTEX_LOCK_INSTRUCTION:
@@ -596,7 +618,9 @@ void cpu(void) {
           break;
         case WAIT_COND_INSTRUCTION:
           if (increment_avail[process_index] == 0) {
-            cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+            cond_wait(num_not_incremented[process_index], mutex[process_index], current_process, ready_queue);
+            //deschedule here
+            descheduled_flag = 1;
           }
           break;
         case INCREMENT_INSTRUCTION:
@@ -605,7 +629,8 @@ void cpu(void) {
           break;
         case COND_SIGNAL_INSTRUCTION:
           printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
-          cond_signal(num_not_printed[process_index]);
+          PRIORITYq_enqueue(ready_queue, cond_signal(num_not_printed[process_index]));
+          cond_signal(num_not_incremented[process_index]);
           break;
         case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
           increment_avail[process_index]--;
@@ -616,6 +641,7 @@ void cpu(void) {
     }
 
     if (current_process->role == CONSUMER) {
+      printf("Consumer is running\n");
       process_index = get_consumer_process_index(current_process);
       switch (pc_register) { // consumer only instructions
         case FIRST_MUTEX_LOCK_INSTRUCTION:
@@ -632,7 +658,8 @@ void cpu(void) {
           break;
         case WAIT_COND_INSTRUCTION:
           if (increment_avail[process_index] == 1) {
-            cond_wait(num_not_incremented[process_index], mutex[process_index], ready_queue);
+            cond_wait(num_not_incremented[process_index], mutex[process_index], current_process, ready_queue);
+            descheduled_flag = 1;
           }
           break;
         case PRINT_INSTRUCTION:
@@ -641,7 +668,7 @@ void cpu(void) {
           break;
         case COND_SIGNAL_INSTRUCTION:
           printf("PID %lu sent signal on condition %p\n", current_process->pid, &increment_avail[process_index]);
-          cond_signal(num_not_printed[process_index]);
+          PRIORITYq_enqueue(ready_queue, cond_signal(num_not_printed[process_index]));
           break;
         case CHANGE_INCREMENT_AVAIL_INSTRUCTION:
           increment_avail[process_index]++;
@@ -650,6 +677,8 @@ void cpu(void) {
           break;
       }
     }
+
+
 
 
     // if (current_process->role == PRODUCER || current_process->role == CONSUMER) { // all the producer instructions
@@ -717,41 +746,45 @@ void cpu(void) {
 
     // }
 
+    if (descheduled_flag) { // condition wait was called and current process was descheduled
+      error_check = pseudo_isr(condition_wait_interrupt);
+    } else {
+      // Check if process should be terminated
+      // We don't technically need this, terminate_check has logic to stop from terminating idl
+      // this just seems faster
+      if (current_process->pid != idl->pid) { // idl process does not terminate
+        is_terminate_state = check_terminate();
+      }
 
-    // Check if process should be terminated
-    // We don't technically need this, terminate_check has logic to stop from terminating idl
-    // this just seems faster
-    if (current_process->pid != idl->pid) { // idl process does not terminate
-      is_terminate_state = check_terminate();
+      // Check for timer interrupt
+      is_timer_interrupt = check_timer();
+
+      // Check for I/O completions
+      is_io1_completion_interrupt = check_for_io_1_completion();
+      is_io2_completion_interrupt = check_for_io_2_completion();
+
+      // Check for io requests
+      is_io_request_interrupt = check_io_request(current_process);
+
+      if (is_io1_completion_interrupt) {
+        error_check = pseudo_isr(io_1_completion_interrupt);
+      }
+      if (is_io2_completion_interrupt) {
+        error_check = pseudo_isr(io_2_completion_interrupt);
+      }
+
+      // Call pseudo_isr for interrupts, with priority: 1=terminate, 2=timer, 3=io_request
+      // If the process shouldn't terminate, it can be requesting io (process that io request)
+      // if it's not requesting io, the timer could be up (process timer interrupt)
+      if (is_terminate_state) {
+        error_check = pseudo_isr(process_termination_interrupt);
+      } else if (is_io_request_interrupt) {
+        error_check = pseudo_isr(is_io_request_interrupt);
+      } else if (is_timer_interrupt) {
+        error_check = pseudo_isr(timer);
+      }
     }
 
-    // Check for timer interrupt
-    is_timer_interrupt = check_timer();
-
-    // Check for I/O completions
-    is_io1_completion_interrupt = check_for_io_1_completion();
-    is_io2_completion_interrupt = check_for_io_2_completion();
-
-    // Check for io requests
-    is_io_request_interrupt = check_io_request(current_process);
-
-    if (is_io1_completion_interrupt) {
-      error_check = pseudo_isr(io_1_completion_interrupt);
-    }
-    if (is_io2_completion_interrupt) {
-      error_check = pseudo_isr(io_2_completion_interrupt);
-    }
-
-    // Call pseudo_isr for interrupts, with priority: 1=terminate, 2=timer, 3=io_request
-    // If the process shouldn't terminate, it can be requesting io (process that io request)
-    // if it's not requesting io, the timer could be up (process timer interrupt)
-    if (is_terminate_state) {
-      error_check = pseudo_isr(process_termination_interrupt);
-    } else if (is_io_request_interrupt) {
-      error_check = pseudo_isr(is_io_request_interrupt);
-    } else if (is_timer_interrupt) {
-      error_check = pseudo_isr(timer);
-    }
 
     // call pseudo_isr with timer interrupt type
     switch(error_check) { // handle any errors that happened in pseudo_isr

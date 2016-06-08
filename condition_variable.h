@@ -24,7 +24,6 @@ typedef condition_variable * condition_variable_p;
 
 struct condition_variable_struct {
   unsigned long id;
-  int size;
   THREAD_LOCKq_p condition_queue;
 };
 

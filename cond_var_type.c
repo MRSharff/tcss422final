@@ -3,48 +3,41 @@
 
 
 cond_var_p cond_var_p_construct(){
-	cond_var_p temp = (cond_var_p)malloc(sizeof(struct cond_var_struct));
-	temp->thread = NULL;
-	temp->mutex = NULL;
-	temp->next = NULL;
+	cond_var_p temp = calloc(1, sizeof(condition_variable));
+	temp->next_thread = NULL;
+  temp->next_lock = NULL;
+  return temp;
 }
 
-void cond_wait(cond_var_p condition_name, Mutex_p the_mutex, PRIORITYq_p the_ready_queue){
-	if(condition_name != NULL && the_mutex != NULL){
-		cond_var_p temp = condition_name;
-		cond_var_p temp1 = temp->next;
-		while(temp1 != NULL){
-			temp1 = temp1->next;
-			temp = temp-> next;
-		}
-		cond_var_p temp2 = (cond_var_p) malloc(sizeof(struct cond_var_struct));
-		temp2->thread = the_mutex->owner;
-		temp2->mutex = the_mutex;
-		temp2->next = NULL;
-		temp->next = temp2;
-		Mutex_unlock(the_mutex, the_ready_queue);
+// in OS, we need to deschedule the current process (the_calling_thread) and call scheduler
+void cond_wait(cond_var_p condition_var, Mutex_p the_lock, PCB_p the_calling_thread, PRIORITYq_p the_ready_queue){
+	if(condition_var != NULL && the_lock != NULL){
+		Mutex_unlock(the_lock, the_ready_queue);
+    condition_var->next_thread = the_calling_thread;
+    condition_var->next_lock = the_lock;
+    printf("PID %lu requested condition wait on cond %p with mutex %p\n", the_calling_thread->pid, &condition_var, &the_lock);
 	}
 }
 
-PCB_p cond_signal(cond_var_p condition_name){
-  if (condition_name != NULL) {
-    PCB_p temp_pcb = condition_name->thread;
-  	Mutex_p temp_mutex = condition_name->mutex;
-  	FIFOq_enqueue(condition_name->mutex->queue,condition_name->thread);
-  	cond_var_p temp = condition_name;
-  	condition_name = condition_name->next;
-  	Mutex_lock(temp_mutex,temp_pcb);
-  	cond_var_p_destruct(temp);
-  	return temp_pcb;
+PCB_p cond_signal(cond_var_p condition_var){
+  if (condition_var != NULL) {
+    PCB_p temp_thread = condition_var->next_thread;
+    Mutex_p temp_lock = condition_var->next_lock;
+    PCB_set_state(temp_thread, ready);
+
+    // reacquire lock
+    Mutex_lock(temp_lock, temp_thread);
+    condition_var->next_thread = NULL;
+    condition_var->next_lock = NULL;
+    return temp_thread;
   }
   print_error(NULL_POINTER);
-  printf("in cond_signal, condition_name was null");
+  printf("in cond_signal, condition_var was null\n");
   return NULL;
 }
 
 void cond_var_p_destruct(cond_var_p condition){
-	condition-> next = NULL;
-	condition->thread = NULL;
-	condition->mutex = NULL;
+	condition->next_thread = NULL;
+	condition->next_lock = NULL;
 	free(condition);
 }

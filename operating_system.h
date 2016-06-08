@@ -15,7 +15,7 @@
 #define MAX_MUTEX_SIZE 10
 
 enum interrupt_type {
-  timer, io_1_interrupt, io_2_interrupt, io_1_completion_interrupt, io_2_completion_interrupt, process_termination_interrupt
+  timer, io_1_interrupt, io_2_interrupt, io_1_completion_interrupt, io_2_completion_interrupt, process_termination_interrupt, condition_wait_interrupt
 };
 
 /**
